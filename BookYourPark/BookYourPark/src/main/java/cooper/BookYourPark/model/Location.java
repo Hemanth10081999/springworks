@@ -2,6 +2,8 @@ package cooper.BookYourPark.model;
 
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name="LOCATION")
@@ -26,13 +28,13 @@ public class Location {
 
     @OneToMany
     @JoinColumn(name = "slotdetails_id")
-    private Slotdetails slotdetails;
+    private Set<Slotdetails> slotdetails=new HashSet<>();
 
-    public Slotdetails getSlotdetails() {
+    public Set<Slotdetails> getSlotdetails() {
         return slotdetails;
     }
 
-    public void setSlotdetails(Slotdetails slotdetails) {
+    public void setSlotdetails(Set<Slotdetails> slotdetails) {
         this.slotdetails = slotdetails;
     }
 

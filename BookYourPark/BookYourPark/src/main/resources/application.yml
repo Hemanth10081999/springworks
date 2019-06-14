@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:h2:mem:demo
+    url: jdbc:h2:file:C:\Users\hv3\Music\BookYourPark\BookYourPark
     driver-class-name: org.h2.Driver
     username: sa
     password:
@@ -8,7 +8,7 @@ spring:
     show-sql: true
     hibernate:
       dialect: org.hibernate.dialect.H2Dialect
-      ddl-auto: create-drop
+      ddl-auto: update
       use-new-id-generator-mappings: false
     naming:
       physical-strategy: "org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl"

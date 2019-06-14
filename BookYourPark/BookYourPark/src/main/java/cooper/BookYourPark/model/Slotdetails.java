@@ -2,6 +2,8 @@ package cooper.BookYourPark.model;
 
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "SLOTDETAILS")
@@ -13,23 +15,24 @@ public class Slotdetails {
     private Integer floor;
     private Boolean availability;
 
+    /*
     @ManyToOne
     @JoinColumn(name = "slottype_id")
     private Slottype slottype;
-
+    */
     @OneToMany
     @JoinColumn(name = "parking_id")
-    private Parking parking;
+    private Set<Parking> parking=new HashSet<>();
 
     @ManyToOne
     @JoinColumn(name = "location_id")
     private Location location;
 
-    public Parking getParking() {
+    public Set<Parking> getParking() {
         return parking;
     }
 
-    public void setParking(Parking parking) {
+    public void setParking(Set<Parking> parking) {
         this.parking = parking;
     }
 
@@ -72,7 +75,7 @@ public class Slotdetails {
     public void setAvailability(Boolean availability) {
         this.availability = availability;
     }
-
+/*
     public Slottype getSlottype() {
         return slottype;
     }
@@ -80,4 +83,5 @@ public class Slotdetails {
     public void setSlottype(Slottype slottype) {
         this.slottype = slottype;
     }
+*/
 }

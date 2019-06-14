@@ -2,7 +2,8 @@ package cooper.BookYourPark.model;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
-
+import java.util.HashSet;
+import java.util.Set;
 
 
 @Entity
@@ -28,17 +29,15 @@ public class Login {
 
     @OneToMany
     @JoinColumn(name = "vehicle_id")
-    private Vehicle vehicle;
+    private Set<Vehicle> vehicles=new HashSet<>();
 
 
-
-
-    public Vehicle getVehicle() {
-        return vehicle;
+    public Set<Vehicle> getVehicles() {
+        return vehicles;
     }
 
-    public void setVehicle(Vehicle vehicle) {
-        this.vehicle = vehicle;
+    public void setVehicles(Set<Vehicle> vehicles) {
+        this.vehicles = vehicles;
     }
 
     public Profile getProfile() {

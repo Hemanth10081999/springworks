@@ -2,6 +2,8 @@ package cooper.BookYourPark.model;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "VEHICLE")
@@ -19,18 +21,18 @@ public class Vehicle {
 
     @OneToMany
     @JoinColumn(name = "parking_id")
-    private Parking parking;
+    private Set<Parking> parking=new HashSet<>();
 
 
     @ManyToOne
     @JoinColumn(name = "login_id")
     private Login login;
 
-    public Parking getParking() {
+    public Set<Parking> getParking() {
         return parking;
     }
 
-    public void setParking(Parking parking) {
+    public void setParking(Set<Parking> parking) {
         this.parking = parking;
     }
 
