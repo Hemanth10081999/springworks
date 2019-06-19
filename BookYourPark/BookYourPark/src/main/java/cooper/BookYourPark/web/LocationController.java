@@ -24,12 +24,12 @@ public class LocationController {
         return locationService.getallLocation();
     }
 
-    @RequestMapping(value = "/locations/{locationId}",method = RequestMethod.GET,produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/locations/{locationId}",method = RequestMethod.GET,produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public Location getlocationbyId(@PathVariable("locationId")Integer locationId){
         return locationService.getLocationById(locationId);
     }
 
-    @RequestMapping(value = "/locations",method = RequestMethod.POST,produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/locations",method = RequestMethod.POST,produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<Location> CreateLocation(@RequestBody Location location){
         Location CreatedLocation=locationService.createLocation(location);
         return Optional.ofNullable(CreatedLocation)
@@ -37,7 +37,7 @@ public class LocationController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
-    @RequestMapping(value = "/locations",method = RequestMethod.PUT,produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/locations",method = RequestMethod.PUT,produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<Location> createLocation(@RequestBody Location location){
         Location createdLocation=locationService.createLocation(location);
         return Optional.ofNullable(createdLocation)
@@ -45,7 +45,7 @@ public class LocationController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
-    @RequestMapping(value = "locations/{locationId}",method = RequestMethod.DELETE,produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "locations/{locationId}",method = RequestMethod.DELETE,produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<Integer> deleteLocationbylocationId(@PathVariable("locationId") Integer locationId){
         System.out.println(locationId);
         locationService.deleteLocationByLocationId(locationId);

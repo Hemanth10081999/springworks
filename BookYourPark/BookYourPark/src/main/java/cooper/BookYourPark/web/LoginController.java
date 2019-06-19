@@ -25,12 +25,12 @@ public class LoginController {
         return loginService.getallLogin();
     }
 
-    @RequestMapping(value = "/logins/{loginId}",method = RequestMethod.GET,produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/logins/{loginId}",method = RequestMethod.GET,produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public Login getloginbyId(@PathVariable("loginId")Integer loginId){
         return loginService.getLoginById(loginId);
     }
 
-    @RequestMapping(value = "/logins",method = RequestMethod.POST,produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/logins",method = RequestMethod.POST,produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<Login> CreateLogin(@RequestBody Login login){
         Login CreatedLogin=loginService.createLogin(login);
         return Optional.ofNullable(CreatedLogin)
@@ -38,7 +38,7 @@ public class LoginController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
-    @RequestMapping(value = "/logins",method = RequestMethod.PUT,produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/logins",method = RequestMethod.PUT,produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<Login> createLogin(@RequestBody Login login){
         Login createdLogin=loginService.createLogin(login);
         return Optional.ofNullable(createdLogin)
@@ -46,7 +46,7 @@ public class LoginController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
-    @RequestMapping(value = "logins/{loginId}",method = RequestMethod.DELETE,produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "logins/{loginId}",method = RequestMethod.DELETE,produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<Integer> deleteLoginbyloginId(@PathVariable("loginId") Integer loginId){
         System.out.println(loginId);
         loginService.deleteLoginByLoginId(loginId);

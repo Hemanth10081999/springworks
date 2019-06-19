@@ -27,12 +27,12 @@ public class SlotdetailsController {
         return slotdetailsService.getallSlotdetails();
     }
 
-    @RequestMapping(value = "/slotdetails/{slotdetailsId}",method = RequestMethod.GET,produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/slotdetails/{slotdetailsId}",method = RequestMethod.GET,produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public Slotdetails getslotdetailsbyId(@PathVariable("slotdetailsId")Integer slotdetailsId){
         return slotdetailsService.getSlotdetailsById(slotdetailsId);
     }
 
-    @RequestMapping(value = "/slotdetails",method = RequestMethod.POST,produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/slotdetails",method = RequestMethod.POST,produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<Slotdetails> CreateSlotdetails(@RequestBody Slotdetails slotdetails){
         Slotdetails CreatedSlotdetails=slotdetailsService.createSlotdetails(slotdetails);
         return Optional.ofNullable(CreatedSlotdetails)
@@ -40,7 +40,7 @@ public class SlotdetailsController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
-    @RequestMapping(value = "/slotdetails",method = RequestMethod.PUT,produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/slotdetails",method = RequestMethod.PUT,produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<Slotdetails> createSlotdetails(@RequestBody Slotdetails slotdetails){
         Slotdetails createdSlotdetails=slotdetailsService.createSlotdetails(slotdetails);
         return Optional.ofNullable(createdSlotdetails)
@@ -48,7 +48,7 @@ public class SlotdetailsController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
-    @RequestMapping(value = "slotdetails/{slotdetailsId}",method = RequestMethod.DELETE,produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "slotdetails/{slotdetailsId}",method = RequestMethod.DELETE,produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<Integer> deleteSlotdetailsbyslotdetailsId(@PathVariable("slotdetailsId") Integer slotdetailsId){
         System.out.println(slotdetailsId);
         slotdetailsService.deleteslotdetailsBySlotdetailsId(slotdetailsId);

@@ -26,12 +26,12 @@ public class TypeController {
         return typeService.getallTypes();
     }
 
-    @RequestMapping(value = "/types/{typeId}",method = RequestMethod.GET,produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/types/{typeId}",method = RequestMethod.GET,produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public Type gettypebyId(@PathVariable("typeId")Integer typeId){
         return typeService.getTypesById(typeId);
     }
 
-    @RequestMapping(value = "/types",method = RequestMethod.POST,produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/types",method = RequestMethod.POST,produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<Type> CreateType(@RequestBody Type type){
         Type CreatedType=typeService.createType(type);
         return Optional.ofNullable(CreatedType)
@@ -39,7 +39,7 @@ public class TypeController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
-    @RequestMapping(value = "/types",method = RequestMethod.PUT,produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/types",method = RequestMethod.PUT,produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<Type> createType(@RequestBody Type type){
         Type createdTypes=typeService.createType(type);
         return Optional.ofNullable(createdTypes)
@@ -47,7 +47,7 @@ public class TypeController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
-    @RequestMapping(value = "types/{typeId}",method = RequestMethod.DELETE,produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "types/{typeId}",method = RequestMethod.DELETE,produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<Integer> deleteTypebytypeId(@PathVariable("typeId") Integer typeId){
         System.out.println(typeId);
         typeService.deletetypeByTypeId(typeId);
