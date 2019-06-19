@@ -51,7 +51,4 @@ public class LocationController {
         locationService.deleteLocationByLocationId(locationId);
         return new ResponseEntity<>(HttpStatus.OK);
     }
-
-
-
 }

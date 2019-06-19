@@ -26,8 +26,9 @@ public class Location {
 
 
 
+
     @OneToMany
-    @JoinColumn(name = "slotdetails_id")
+    @JoinColumn(name = "location_id")
     private Set<Slotdetails> slotdetails=new HashSet<>();
 
 

@@ -25,7 +25,7 @@ public class Slotdetails {
     private Location location;
 
     @ManyToOne
-    @JoinColumn(name = "type_id")
+    @JoinColumn(name = "slot_id")
     private Type type;
 
 

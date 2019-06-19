@@ -20,6 +20,8 @@ public class Type {
     @JoinColumn(name = "slot_id")
     private Set<Slotdetails> slotdetails=new HashSet<>();
 
+
+
     public Set<Slotdetails> getSlotdetails() {
         return slotdetails;
     }
