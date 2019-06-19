@@ -30,6 +30,8 @@ public class Location {
     @JoinColumn(name = "slotdetails_id")
     private Set<Slotdetails> slotdetails=new HashSet<>();
 
+
+
     public Set<Slotdetails> getSlotdetails() {
         return slotdetails;
     }

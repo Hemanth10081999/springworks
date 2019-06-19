@@ -13,13 +13,11 @@ public class Slotdetails {
     private Integer id;
     private String name;
     private Integer floor;
+
+
     private Boolean availability;
 
-    /*
-    @ManyToOne
-    @JoinColumn(name = "slottype_id")
-    private Slottype slottype;
-    */
+
     @OneToMany
     @JoinColumn(name = "parking_id")
     private Set<Parking> parking=new HashSet<>();
@@ -27,6 +25,18 @@ public class Slotdetails {
     @ManyToOne
     @JoinColumn(name = "location_id")
     private Location location;
+
+    @ManyToOne
+    @JoinColumn(name = "type_id")
+    private Type type;
+
+    public Type getType() {
+        return type;
+    }
+
+    public void setType(Type type) {
+        this.type = type;
+    }
 
     public Set<Parking> getParking() {
         return parking;
@@ -75,13 +85,6 @@ public class Slotdetails {
     public void setAvailability(Boolean availability) {
         this.availability = availability;
     }
-/*
-    public Slottype getSlottype() {
-        return slottype;
-    }
 
-    public void setSlottype(Slottype slottype) {
-        this.slottype = slottype;
-    }
-*/
+
 }

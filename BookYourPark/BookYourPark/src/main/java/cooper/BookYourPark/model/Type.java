@@ -1,8 +1,6 @@
 package cooper.BookYourPark.model;
 
-
 import javax.persistence.*;
-import javax.persistence.criteria.CriteriaBuilder;
 
 @Entity
 @Table(name = "TYPE")
@@ -12,9 +10,20 @@ public class Type {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
     private String name;
-    private Integer limit;
+    private Integer time;
     private Integer value;
 
+    @OneToMany
+    @JoinColumn(name = "slot_id")
+    private Slotdetails slotdetails;
+
+    public Slotdetails getSlotdetails() {
+        return slotdetails;
+    }
+
+    public void setSlotdetails(Slotdetails slotdetails) {
+        this.slotdetails = slotdetails;
+    }
 
     public Integer getId() {
         return id;
@@ -32,12 +41,12 @@ public class Type {
         this.name = name;
     }
 
-    public Integer getLimit() {
-        return limit;
+    public Integer getTime() {
+        return time;
     }
 
-    public void setLimit(Integer limit) {
-        this.limit = limit;
+    public void setTime(Integer time) {
+        this.time = time;
     }
 
     public Integer getValue() {
