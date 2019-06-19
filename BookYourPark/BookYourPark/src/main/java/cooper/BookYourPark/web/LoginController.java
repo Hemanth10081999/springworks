@@ -1,6 +1,7 @@
 package cooper.BookYourPark.web;
 
 
+
 import cooper.BookYourPark.model.Login;
 import cooper.BookYourPark.service.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,37 +10,46 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+
 import java.util.List;
 import java.util.Optional;
 
 @RestController
 @RequestMapping("/api")
 public class LoginController {
-
-
-
     @Autowired
     private LoginService loginService;
 
-
-    @RequestMapping(value="/users",method = RequestMethod.GET,produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public List<Login> getLogins(){
-        return loginService.getAllLogin();
+    @RequestMapping(value = "/logins",method = RequestMethod.GET,produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public List<Login> getlogins(){
+        return loginService.getallLogin();
     }
 
-    @RequestMapping(value="/users/(id)",method = RequestMethod.GET,produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public ResponseEntity<Login> getLoginById(@PathVariable Integer id){
-        Optional<Login> login = loginService.getLoginById(id);
-        return login.map(value -> new ResponseEntity(value, HttpStatus.OK))
+    @RequestMapping(value = "/logins/{loginId}",method = RequestMethod.GET,produces = MediaType.APPLICATION_JSON_VALUE)
+    public Login getloginbyId(@PathVariable("loginId")Integer loginId){
+        return loginService.getLoginById(loginId);
+    }
+
+    @RequestMapping(value = "/logins",method = RequestMethod.POST,produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Login> CreateLogin(@RequestBody Login login){
+        Login CreatedLogin=loginService.createLogin(login);
+        return Optional.ofNullable(CreatedLogin)
+                .map(u-> ResponseEntity.ok().body(u))
                 .orElse(ResponseEntity.notFound().build());
     }
 
-    @RequestMapping(value="/users",method = RequestMethod.POST,produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @RequestMapping(value = "/logins",method = RequestMethod.PUT,produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Login> createLogin(@RequestBody Login login){
-        Login createLogin= loginService.createLogin(login);
-        return Optional.ofNullable(createLogin)
-                .map(u ->ResponseEntity.ok().body(u))
+        Login createdLogin=loginService.createLogin(login);
+        return Optional.ofNullable(createdLogin)
+                .map(u-> ResponseEntity.ok().body(u))
                 .orElse(ResponseEntity.notFound().build());
     }
 
+    @RequestMapping(value = "logins/{loginId}",method = RequestMethod.DELETE,produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Integer> deleteLoginbyloginId(@PathVariable("loginId") Integer loginId){
+        System.out.println(loginId);
+        loginService.deleteLoginByLoginId(loginId);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 }
