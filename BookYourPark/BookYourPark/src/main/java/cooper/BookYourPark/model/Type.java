@@ -1,6 +1,8 @@
 package cooper.BookYourPark.model;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "TYPE")
@@ -13,15 +15,16 @@ public class Type {
     private Integer time;
     private Integer value;
 
+
     @OneToMany
     @JoinColumn(name = "slot_id")
-    private Slotdetails slotdetails;
+    private Set<Slotdetails> slotdetails=new HashSet<>();
 
-    public Slotdetails getSlotdetails() {
+    public Set<Slotdetails> getSlotdetails() {
         return slotdetails;
     }
 
-    public void setSlotdetails(Slotdetails slotdetails) {
+    public void setSlotdetails(Set<Slotdetails> slotdetails) {
         this.slotdetails = slotdetails;
     }
 
