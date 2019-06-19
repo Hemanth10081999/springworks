@@ -13,8 +13,6 @@ public class Slotdetails {
     private Integer id;
     private String name;
     private Integer floor;
-
-
     private Boolean availability;
 
 
@@ -29,6 +27,7 @@ public class Slotdetails {
     @ManyToOne
     @JoinColumn(name = "type_id")
     private Type type;
+
 
     public Type getType() {
         return type;

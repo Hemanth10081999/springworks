@@ -22,3 +22,9 @@ alter table slotdetails add constraint FKm4dkjixlmtwxu9n63vvfyspne foreign key (
 2019-06-19 13:02:20 jdbc[3]: exception
 org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "SLOTDETAILS" not found; SQL statement:
 alter table slotdetails add constraint FKp2w51c6wiigertq1wtsmspxf foreign key (slotdetails_id) references location [42102-199]
+2019-06-19 16:52:52 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLDataException: Data conversion error converting "'' (LOCATION: ""LOC_ID"" INTEGER DEFAULT (NEXT VALUE FOR ""PUBLIC"".""SYSTEM_SEQUENCE_75224BDB_E76B_4A2E_A52A_E50600AA5705"") NOT NULL NULL_TO_DEFAULT SEQUENCE ""PUBLIC"".""SYSTEM_SEQUENCE_75224BDB_E76B_4A2E_A52A_E50600AA5705"")"; SQL statement:
+INSERT INTO "PUBLIC"."LOCATION"("LOC_ID","AVAILABLE_SLOTS","LATITUDE","LOC_ADDRESS","LOC_CITY","LOC_NAME","LOC_PIN","LOC_SECTOR","LOC_SUPPORT","LONGITUDE","TOTAL_SLOTS")VALUES(?,?,?,?,?,?,?,?,?,?,?) -- (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9, ?10, ?11) [22018-199]
+2019-06-19 16:52:52 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLDataException: Data conversion error converting "'' (LOCATION: ""LOC_ID"" INTEGER DEFAULT (NEXT VALUE FOR ""PUBLIC"".""SYSTEM_SEQUENCE_75224BDB_E76B_4A2E_A52A_E50600AA5705"") NOT NULL NULL_TO_DEFAULT SEQUENCE ""PUBLIC"".""SYSTEM_SEQUENCE_75224BDB_E76B_4A2E_A52A_E50600AA5705"")"; SQL statement:
+INSERT INTO "PUBLIC"."LOCATION"("LOC_ID","AVAILABLE_SLOTS","LATITUDE","LOC_ADDRESS","LOC_CITY","LOC_NAME","LOC_PIN","LOC_SECTOR","LOC_SUPPORT","LONGITUDE","TOTAL_SLOTS")VALUES(?,?,?,?,?,?,?,?,?,?,?) -- (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9, ?10, ?11) [22018-199]
