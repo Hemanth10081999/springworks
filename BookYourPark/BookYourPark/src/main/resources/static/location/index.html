@@ -124,39 +124,20 @@
 <!--navigation bar filter-->    
 <div class=".bs-example">
     <nav class="navbar navbar-expand-md navbar-light" style="background-image: linear-gradient(-45deg, rgba(182, 42, 182, 0.781), rgba(160, 9, 247, 0.904));">
-        <div class="navbar-nav" >
-            <div class="container mt-1">
-                <div class="row">
-                    <h6 class="navbar-brand" style="color: #FFFFFF">Search Location : </h6>
-                    <form class="form-inline" action="#" method="post">
-                        <div class="form-group mr-4">
-                            <select class="btn btn-light dropdown-toggle" id = "myList">
-                                    <option value = "0">Select available location</option>
-                                    <option value = "2">two</option>
-                                    <option value = "3">three</option>
-                                    <option value = "4">four</option>
-                            </select> 
-                        </div>
-                        <div class="form-group mr-2">
-                            <button type="submit" class="button"><span>Select</span></button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
         <div class="navbar-nav ml-auto">
             <div class="container mt-1">
                 <div class="row">
                     <h6 class="navbar-brand" style="color: #FFFFFF">Location Sector :</h6>
-                    <form class="form-inline" action="#" method="post">
+                    <form class="form-inline" action="#" >
                         <div class="form-group mr-4">
                             <select class="btn btn-light dropdown-toggle" id = "myList">
-                                <option value = "1">Private</option>
-                                <option value = "2">Public</option>
+                                <option value = "">Select Sector</option>
+                                <option value = "pr">Private</option>
+                                <option value = "pu">Public</option>
                             </select>
                         </div>
                         <div class="form-group mr-2">
-                            <button type="submit" class="button" ><span>Sort Locations</span></button>
+                            <button type="submit" class="button" onclick="sorttable()"><span>Sort Locations</span></button>
                         </div>
                     </form>
                 </div>
@@ -171,7 +152,7 @@
 
 <div class="table-responsive" style="margin-bottom: 100px;">
     <table  class="table table-striped table-hover" >
-            <thead class="thead-light">
+            <thead class="thead-light" >
                 <tr>
                     <th><b>#</b></th>
                     <th><b>Name</b></th>

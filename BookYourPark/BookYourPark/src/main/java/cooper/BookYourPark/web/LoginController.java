@@ -56,8 +56,8 @@ public class LoginController {
 
     @CrossOrigin
     @RequestMapping(value = "/logins/login",method = RequestMethod.POST,produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+
     public Boolean checkLogin(@RequestBody Login login){
         return loginService.authUser(login.getMailid(),login.getPassword());
     }
-
 }

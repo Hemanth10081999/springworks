@@ -30,4 +30,10 @@ public class LocationService {
     public void deleteLocationByLocationId(Integer locationId){
         locationRepository.deleteById(locationId);
     }
+
+
+    public List<Location> sort(String locSector){
+        return locationRepository.findByLocSector(locSector);
+    }
+
 }

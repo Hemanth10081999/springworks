@@ -19,11 +19,7 @@ public class LocationController {
     @Autowired
     private LocationService locationService;
 
-    @CrossOrigin
-    @RequestMapping(value = "/locations",method = RequestMethod.GET,produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public List<Location> getlocations(){
-        return locationService.getallLocation();
-    }
+
 
 
     @RequestMapping(value = "/locations/{locationId}",method = RequestMethod.GET,produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
@@ -53,4 +49,20 @@ public class LocationController {
         locationService.deleteLocationByLocationId(locationId);
         return new ResponseEntity<>(HttpStatus.OK);
     }
+
+    @CrossOrigin
+    @RequestMapping(value = "/locations",method = RequestMethod.GET,produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public List<Location> getlocations(){
+        return locationService.getallLocation();
+    }
+
+
+
+    @CrossOrigin
+    @RequestMapping(value = "/locations/sort",method = RequestMethod.POST,produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public List<Location> sortLocations(@RequestBody Location location){
+        return locationService.sort(location.getLocSector());
+    }
+
+
 }
