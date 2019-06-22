@@ -74,7 +74,7 @@
     }
             </style>
 </head>
-<body class="custom-class" style="margin-bottom: 100px">
+<body class="custom-class" style="margin-bottom: 100px" onload="findcookie()">
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
@@ -122,7 +122,7 @@
                         </div>
                         <div class="form-group row">
                             <div class="col-sm-10 offset-sm-2">
-                                <label class="form-check-label"><input type="checkbox"> Remember me</label>
+                                <label class="form-check-label"><input type="checkbox" id="check"> Remember me</label>
                             </div>
                         </div>
                         <div class="form-group row" >
@@ -199,12 +199,12 @@
                 <div class="bs-example">
                         <form class="form-inline" action="#" method="post">
                             <div class="form-group mr-2">
-                                <label class="sr-only" for="inputEmail">Email</label>
-                                <input type="email" class="form-control" id="inputEmail" placeholder="Email" required>
+                                <label class="sr-only" for="qEmail">Email</label>
+                                <input type="email" class="form-control" id="qEmail" placeholder="Email" required>
                             </div>
                             <div class="form-group mr-2">
-                                <label class="sr-only" for="inputquery">Query</label>
-                                <input type="text" class="form-control" id="inputquery" placeholder="Your query" required>
+                                <label class="sr-only" for="qquery">Query</label>
+                                <input type="text" class="form-control" id="qQuery" placeholder="Your query" required>
                             </div>
                             <div class="form-group mr-2">
                                 <button type="submit" class="button"><span>Submit</span></button>

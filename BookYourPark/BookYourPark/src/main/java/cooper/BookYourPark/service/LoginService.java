@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 
@@ -31,4 +32,16 @@ public class LoginService {
     public void deleteLoginByLoginId(Integer loginId){
         loginRepository.deleteById(loginId);
     }
+
+
+    public Boolean authUser(String email,String password){
+        Optional<Login> loginOptional=loginRepository.findByMailidAndPassword(email,password);
+        if (loginOptional.isPresent()){
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
 }

@@ -14,14 +14,21 @@ public class Login {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
+
+    @NotNull
+    private  String userName;
     @NotNull
     private String mailid;
     @NotNull
     private String password;
     @NotNull
-    private LocalDateTime createDate;
+    private String  createDate;
+
     @NotNull
-    private Integer wallet;
+    private long phone;
+
+
+
 
     @OneToOne
     @JoinColumn(name = "profile_id")
@@ -30,6 +37,24 @@ public class Login {
     @OneToMany
     @JoinColumn(name = "vehicle_id")
     private Set<Vehicle> vehicles=new HashSet<>();
+
+
+    public String getCreateDate() {
+        return createDate;
+    }
+
+    public void setCreateDate(String createDate) {
+        this.createDate = createDate;
+    }
+
+    public long getPhone() {
+        return phone;
+    }
+
+    public void setPhone(long phone) {
+        this.phone = phone;
+    }
+
 
 
     public Set<Vehicle> getVehicles() {
@@ -72,19 +97,15 @@ public class Login {
         this.password = password;
     }
 
-    public LocalDateTime getCreateDate() {
-        return createDate;
+
+
+
+
+    public String getUserName() {
+        return userName;
     }
 
-    public void setCreateDate(LocalDateTime createDate) {
-        this.createDate = createDate;
-    }
-
-    public Integer getWallet() {
-        return wallet;
-    }
-
-    public void setWallet(Integer wallet) {
-        this.wallet = wallet;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 }

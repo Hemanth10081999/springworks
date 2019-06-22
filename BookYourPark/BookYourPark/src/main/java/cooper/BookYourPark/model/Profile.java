@@ -17,7 +17,7 @@ public class Profile {
     private String firstName;
     private String lastName;
     @NotNull
-    private String phone;
+
     private LocalDate dob;
     @NotNull
     private Character gender;
@@ -71,13 +71,7 @@ public class Profile {
         this.lastName = lastName;
     }
 
-    public String getPhone() {
-        return phone;
-    }
 
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
 
     public LocalDate getDob() {
         return dob;

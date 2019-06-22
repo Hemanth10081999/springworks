@@ -7,7 +7,7 @@ function loadPosts(){
             posts.map(p=>{
                 document.getElementById('posts').innerHTML += `
                 <tr>
-                <td>${p.title}</td>
+                <td>${p.userId}</td>
                 <td>${p.body}</td>
                 <td>50</td>
                 </tr>

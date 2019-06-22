@@ -1,6 +1,8 @@
 package cooper.BookYourPark.model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -29,9 +31,8 @@ public class Location {
 
     @OneToMany
     @JoinColumn(name = "location_id")
+    @JsonIgnore
     private Set<Slotdetails> slotdetails=new HashSet<>();
-
-
 
     public Set<Slotdetails> getSlotdetails() {
         return slotdetails;

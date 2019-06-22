@@ -19,10 +19,12 @@ public class LocationController {
     @Autowired
     private LocationService locationService;
 
+    @CrossOrigin
     @RequestMapping(value = "/locations",method = RequestMethod.GET,produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public List<Location> getlocations(){
         return locationService.getallLocation();
     }
+
 
     @RequestMapping(value = "/locations/{locationId}",method = RequestMethod.GET,produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public Location getlocationbyId(@PathVariable("locationId")Integer locationId){

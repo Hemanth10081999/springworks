@@ -30,6 +30,7 @@ public class LoginController {
         return loginService.getLoginById(loginId);
     }
 
+    @CrossOrigin
     @RequestMapping(value = "/logins",method = RequestMethod.POST,produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<Login> CreateLogin(@RequestBody Login login){
         Login CreatedLogin=loginService.createLogin(login);
@@ -52,4 +53,11 @@ public class LoginController {
         loginService.deleteLoginByLoginId(loginId);
         return new ResponseEntity<>(HttpStatus.OK);
     }
+
+    @CrossOrigin
+    @RequestMapping(value = "/logins/login",method = RequestMethod.POST,produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public Boolean checkLogin(@RequestBody Login login){
+        return loginService.authUser(login.getMailid(),login.getPassword());
+    }
+
 }

@@ -8,7 +8,13 @@ function handleClick(){
     const repassword=document.getElementById('rePassword').value;
     const url='http://localhost:8080/api/logins';
 
-    
+    var today=new Date();
+    var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+    var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds()+".000";
+    var dateTime = date+'-'+time;
+
+
+
     if(name.length<3 || name.length>20){
         console.log("user name should be with in 4 to 20 characters")
         alert("user name should be with in 4 to 20 characters");
@@ -28,7 +34,8 @@ function handleClick(){
                     'userName': name,
                     'mailid': email,
                     'phone': phone,
-                    'password': password
+                    'password': password,
+                    'createDate':dateTime
                 };
     
                 console.log(''+JSON.stringify(data));
@@ -39,8 +46,12 @@ function handleClick(){
                     },
                     body: JSON.stringify(data),
                 })
-                .then(response => response.json())
+                    .then(response => response.json())
                     .then(data => console.log(JSON.stringify(data)))
+                    .then(response => {
+                        alert("Registered successfully");
+                        window.location="../location/index.html";
+                    })
                     .catch(error => console.error(error))
             }
             else{
@@ -86,12 +97,49 @@ function loginClick(){
     .then(data=>{
         if((JSON.stringify(data))=="true")
         {
-            window.location="https://www.google.com/";
+            if ((document.getElementById("check").checked) == true){
+                var d = new Date();
+                d.setTime(d.getTime() + (30*24*60*60*1000));
+                var expires = "expires="+ d.toUTCString();
+                document.cookie = "username="+email+";"+expires+";path=/";
+                
+                window.location="../location/index.html";
+            }
+            else{
+                document.cookie="username="+email+";path=/";
+                window.location="../location/index.html";
+            }
+            
         }
         else{
             alert("Bad login credentials")
         }
         
     })
-    .catch(error=>alert("Error occured in server"));
+    .catch(error=>console.error(error));
 }
+
+
+function findcookie(){
+    var username = getCookie("username");
+    if (username != "") {
+     window.location="../location/index.html";
+    }
+}
+
+
+function getCookie(cname) {
+    var name = cname + "=";
+    var decodedCookie = decodeURIComponent(document.cookie);
+    var ca = decodedCookie.split(';');
+    for(var i = 0; i < ca.length; i++) {
+      var c = ca[i];
+      while (c.charAt(0) == ' ') {
+        c = c.substring(1);
+      }
+      if (c.indexOf(name) == 0) {
+        return c.substring(name.length, c.length);
+      }
+    }
+    return "";
+  }
