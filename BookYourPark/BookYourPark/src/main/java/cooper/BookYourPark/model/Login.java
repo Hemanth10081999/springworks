@@ -1,9 +1,7 @@
 package cooper.BookYourPark.model;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -17,63 +15,31 @@ public class Login {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
-    @NotNull
     private  String userName;
-    @NotNull
+
     private String mailid;
-    @NotNull
+
     private String password;
-    @NotNull
+
+
+    @Column(nullable = true)
     private String  createDate;
 
-    @NotNull
     private long phone;
 
 
-
-
-    @OneToOne
-    @JoinColumn(name = "profile_id")
-    private Profile profile;
+    private String firstName;
+    private String lastName;
+    private String dob;
+    private Character gender;
+    private String companyName;
+    private String address;
+    private String city;
+    private String pin;
 
     @OneToMany
     @JoinColumn(name = "vehicle_id")
     private Set<Vehicle> vehicles=new HashSet<>();
-
-
-    public String getCreateDate() {
-        return createDate;
-    }
-
-    public void setCreateDate(String createDate) {
-        this.createDate = createDate;
-    }
-
-    public long getPhone() {
-        return phone;
-    }
-
-    public void setPhone(long phone) {
-        this.phone = phone;
-    }
-
-
-
-    public Set<Vehicle> getVehicles() {
-        return vehicles;
-    }
-
-    public void setVehicles(Set<Vehicle> vehicles) {
-        this.vehicles = vehicles;
-    }
-
-    public Profile getProfile() {
-        return profile;
-    }
-
-    public void setProfile(Profile profile) {
-        this.profile = profile;
-    }
 
     public Integer getId() {
         return id;
@@ -81,6 +47,14 @@ public class Login {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public String getMailid() {
@@ -99,15 +73,91 @@ public class Login {
         this.password = password;
     }
 
-
-
-
-
-    public String getUserName() {
-        return userName;
+    public String getCreateDate() {
+        return createDate;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setCreateDate(String createDate) {
+        this.createDate = createDate;
+    }
+
+    public long getPhone() {
+        return phone;
+    }
+
+    public void setPhone(long phone) {
+        this.phone = phone;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getDob() {
+        return dob;
+    }
+
+    public void setDob(String dob) {
+        this.dob = dob;
+    }
+
+    public Character getGender() {
+        return gender;
+    }
+
+    public void setGender(Character gender) {
+        this.gender = gender;
+    }
+
+    public String getCompanyName() {
+        return companyName;
+    }
+
+    public void setCompanyName(String companyName) {
+        this.companyName = companyName;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getPin() {
+        return pin;
+    }
+
+    public void setPin(String pin) {
+        this.pin = pin;
+    }
+
+    public Set<Vehicle> getVehicles() {
+        return vehicles;
+    }
+
+    public void setVehicles(Set<Vehicle> vehicles) {
+        this.vehicles = vehicles;
     }
 }

@@ -1,5 +1,10 @@
 function logout(){
-    document.cookie = "username=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    document.cookie = "userName=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    document.cookie = "mailid=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    document.cookie = "password=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    document.cookie = "createDate=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    document.cookie = "phone=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
     window.location="../home/index.html";
 }
 
@@ -7,6 +12,9 @@ function loadlocation(){
     fetch('http://localhost:8080/api/locations')
         .then((res)=>res.json())
         .then(posts=>{
+
+
+            
             let output='';
             var x=1;
             posts.map(p=>{
@@ -40,7 +48,15 @@ function sorttable(){
     console.log('entered into click');
 
     if(strSel!=""){
-        document.getElementById('posts').innerHTML=``;
+    
+
+
+     let element = document.getElementById("posts");
+     while (element.firstChild) {
+       element.removeChild(element.firstChild);
+     }
+
+
         const Data={
         url: 'http://localhost:8080/api/locations/sort',
         data: {

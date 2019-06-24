@@ -359,3 +359,9 @@ Caused by: java.lang.IllegalStateException: The file is locked: nio:C:/Users/hv3
 	at org.h2.mvstore.FileStore.open(FileStore.java:172)
 	at org.h2.mvstore.MVStore.<init>(MVStore.java:390)
 	... 62 more
+2019-06-24 16:15:23 jdbc[34]: exception
+org.h2.jdbc.JdbcSQLDataException: Data conversion error converting "'5.i364' (LOCATION: ""LATITUDE"" FLOAT)"; SQL statement:
+INSERT INTO "PUBLIC"."LOCATION"("LOC_ID","AVAILABLE_SLOTS","LATITUDE","LOC_ADDRESS","LOC_CITY","LOC_NAME","LOC_PIN","LOC_SECTOR","LOC_SUPPORT","LONGITUDE","TOTAL_SLOTS")VALUES(?,?,?,?,?,?,?,?,?,?,?) -- (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9, ?10, ?11) [22018-199]
+2019-06-24 16:15:23 jdbc[34]: exception
+org.h2.jdbc.JdbcSQLDataException: Data conversion error converting "'5.i364' (LOCATION: ""LATITUDE"" FLOAT)"; SQL statement:
+INSERT INTO "PUBLIC"."LOCATION"("LOC_ID","AVAILABLE_SLOTS","LATITUDE","LOC_ADDRESS","LOC_CITY","LOC_NAME","LOC_PIN","LOC_SECTOR","LOC_SUPPORT","LONGITUDE","TOTAL_SLOTS")VALUES(?,?,?,?,?,?,?,?,?,?,?) -- (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9, ?10, ?11) [22018-199]

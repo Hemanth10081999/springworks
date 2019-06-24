@@ -52,10 +52,46 @@ function handleClick(){
                     .then(response => response.json())
                     .then(data => console.log(JSON.stringify(data)))
                     .then(response => {
-                        alert("Registered successfully");
+                    
+
+
+                        console.log('entered into click');
+
+                        const Data={
+                            url: 'http://localhost:8080/api/logins/login',
+                            data: {
+                                'mailid':email,
+                                'password':password
+                            }
+                        };
+                    
+                        postData(Data.url,Data.data)
+                        .then(data=>{
+                            if((JSON.stringify(data))!= null)
+                            {
+                                document.cookie = "id="+data.id+";path=/";
+                                document.cookie="userName="+data.userName+";path=/";
+                                document.cookie="mailid="+data.mailid+";path=/";
+                                document.cookie="password="+data.password+";path=/";
+                                document.cookie="createDate="+data.createDate+";path=/";
+                                document.cookie="phone="+data.phone+";path=/";
+                                window.location="../location/index.html";
+                            }
+                            else{
+                                alert("Bad login credentials")
+                            }
+                        })
+                        .catch(error=>console.error(error));
+
+
+
+
                         window.location="../location/index.html";
                     })
                     .catch(error => console.error(error))
+
+
+                    
             }
             else{
                 console.log('Password must contain 8 to 15 characters which contain at least one lowercase letter, one uppercase letter, one numeric digit, and one special character');
@@ -96,20 +132,32 @@ function loginClick(){
             'password':password
         }
     };
+
     postData(Data.url,Data.data)
     .then(data=>{
-        if((JSON.stringify(data))=="true")
+        if((JSON.stringify(data))!= null)
         {
             if ((document.getElementById("check").checked) == true){
                 var d = new Date();
                 d.setTime(d.getTime() + (30*24*60*60*1000));
                 var expires = "expires="+ d.toUTCString();
-                document.cookie = "username="+email+";"+expires+";path=/";
                 
+                
+                document.cookie = "id="+data.id+";"+expires+";path=/";
+                document.cookie="userName="+data.userName+";"+expires+";path=/";
+                document.cookie="mailid="+data.mailid+";"+expires+";path=/";
+                document.cookie="password="+data.password+";"+expires+";path=/";
+                document.cookie="createDate="+data.createDate+";"+expires+";path=/";
+                document.cookie="phone="+data.phone+";"+expires+";path=/";
                 window.location="../location/index.html";
             }
             else{
-                document.cookie="username="+email+";path=/";
+                document.cookie = "id="+data.id+";path=/";
+                document.cookie="userName="+data.userName+";path=/";
+                document.cookie="mailid="+data.mailid+";path=/";
+                document.cookie="password="+data.password+";path=/";
+                document.cookie="createDate="+data.createDate+";path=/";
+                document.cookie="phone="+data.phone+";path=/";
                 window.location="../location/index.html";
             }
             
@@ -123,8 +171,11 @@ function loginClick(){
 }
 
 
+
+
+
 function findcookie(){
-    var username = getCookie("username");
+    var username = getCookie("id");
     if (username != "") {
      window.location="../location/index.html";
     }
