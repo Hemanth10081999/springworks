@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    
+    <script src="script.js"></script>
     <!-- CSS for animation -->
     <style>
             .button {
@@ -74,7 +74,7 @@
     }
             </style>
 </head>
-<body class="custom-class" style="margin-bottom: 100px">
+<body class="custom-class" style="margin-bottom: 100px" onload="initial()">
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
@@ -111,7 +111,7 @@
                 <div class="card" style="width:400px">
                     <img class="card-img-top" src="images/img_avatar1.png" alt="Card image" style="width:100%">
                     <div class="card-body">
-                        <h4 class="card-title" align="center">User name</h4> <!--user name to be here-->
+                        <h4 class="card-title" align="center" id="nameboard"></h4> <!--user name to be here-->
 
                     </div>
                     </div>
@@ -126,7 +126,7 @@
                                 <div class="form-group row">
                                     <label for="inputName" class="col-sm-3 col-form-label"style="font-weight: bold;font-size: 16px;" >First Name</label>
                                     <div class="col-sm-9">
-                                        <input type="text" class="form-control" id="inputfirstname" placeholder="Your First Name" required>
+                                        <input type="text" class="form-control" id="inputfirstname" placeholder="Your Last Name" required>
                                     </div>
                                 </div>
                                 <div class="form-group row">
@@ -167,12 +167,7 @@
                                             <input type="text" class="form-control" id="inputcity" placeholder="Your City" required>
                                         </div>
                                     </div>
-                                <div class="form-group row">
-                                    <label for="inputAddress" class="col-sm-3 col-form-label"style="font-weight: bold;font-size: 16px;" >Address</label>
-                                    <div class="col-sm-9">
-                                        <input type="text" class="form-control" id="inputaddress" placeholder="Your Residential Address" required>
-                                    </div>
-                                </div>
+
                                 <div class="form-group row">
                                         <label for="inputPin" class="col-sm-3 col-form-label"style="font-weight: bold;font-size: 16px;" >Pin</label>
                                         <div class="col-sm-9">

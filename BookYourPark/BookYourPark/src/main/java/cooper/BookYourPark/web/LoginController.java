@@ -60,4 +60,10 @@ public class LoginController {
     public Boolean checkLogin(@RequestBody Login login){
         return loginService.authUser(login.getMailid(),login.getPassword());
     }
+
+    @CrossOrigin
+    @RequestMapping(value = "/logins/profile",method = RequestMethod.POST,produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public List<Login> viewProfile(@RequestBody Login login){
+        return loginService.findProfile(login.getMailid());
+    }
 }

@@ -8,11 +8,14 @@ function loadlocation(){
         .then((res)=>res.json())
         .then(posts=>{
             let output='';
+            var x=1;
             posts.map(p=>{
+
+                
                 document.getElementById('posts').innerHTML+=`
 
-                <tr>
-                <td>${p.locId}</td>
+                <tr onclick="locClick(${p.locId})">
+                <td>${x++}</td>
                 <td>${p.locName}</td>
                 <td>${p.locAddress}</td>
                 <td>${p.totalSlots}</td>
@@ -47,12 +50,16 @@ function sorttable(){
     postData(Data.url,Data.data)
 
     .then(posts=>{
-        let output='';
-        posts.map(p=>{
-            document.getElementById('posts').innerHTML+=`
 
-            <tr>
-            <td>${p.locId}</td>
+        var x=1;
+
+        posts.map(p=>{
+
+            
+            document.getElementById('posts').innerHTML+=`
+            
+            <tr onclick="locClick(${p.locId})">
+            <td>${x++}</td>
             <td>${p.locName}</td>
             <td>${p.locAddress}</td>
             <td>${p.totalSlots}</td>
@@ -67,6 +74,10 @@ function sorttable(){
     .catch((err)=>{
         console.log(err);
     });
+    }
+    else{
+        document.getElementById('posts').innerHTML=``;
+        loadlocation();
     }
 }
 
@@ -87,4 +98,10 @@ function postData(url='',data={}){
         body: JSON.stringify(data),
     })
     .then(response => response.json());
+}
+
+
+function locClick(loc){
+    document.cookie="location="+loc+";path=/";
+    window.location="../slot/index.html";
 }

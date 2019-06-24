@@ -2,6 +2,7 @@ package cooper.BookYourPark.service;
 
 
 import cooper.BookYourPark.model.Login;
+import cooper.BookYourPark.model.Profile;
 import cooper.BookYourPark.repository.LoginRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,6 +27,8 @@ public class LoginService {
     }
 
     public Login createLogin(Login login){
+     //   Profile newProfile = new Profile();
+     //   login.setProfile(newProfile);
         return loginRepository.save(login);
     }
 
@@ -44,4 +47,7 @@ public class LoginService {
         }
     }
 
+    public List<Login> findProfile(String email){
+        return loginRepository.findByMailid(email);
+    }
 }

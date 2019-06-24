@@ -1,6 +1,7 @@
 package cooper.BookYourPark.service;
 
 
+import cooper.BookYourPark.model.Login;
 import cooper.BookYourPark.model.Profile;
 import cooper.BookYourPark.repository.ProfileRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 
@@ -30,5 +32,9 @@ public class ProfileService {
 
     public void deleteProfileByProfileId(Integer profileId){
         profileRepository.deleteById(profileId);
+    }
+
+    public Optional<Profile> findBylogin(Login login){
+        return (Optional<Profile>) profileRepository.findByLogin(login);
     }
 }

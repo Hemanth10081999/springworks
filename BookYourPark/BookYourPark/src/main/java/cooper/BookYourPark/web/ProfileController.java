@@ -50,4 +50,10 @@ public class ProfileController {
         profileService.deleteProfileByProfileId(profileId);
         return new ResponseEntity<>(HttpStatus.OK);
     }
+
+    @RequestMapping(value = "profiles/bylogin",method = RequestMethod.POST,produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public Optional<Profile> getProfile(@RequestBody Profile profile){
+        return profileService.findBylogin(profile.getLogin());
+    }
+
 }

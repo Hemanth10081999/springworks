@@ -1,4 +1,7 @@
 
+
+
+
 function handleClick(){
     console.log('hello');
     const name=document.getElementById('inputName').value;
@@ -143,3 +146,108 @@ function getCookie(cname) {
     }
     return "";
   }
+
+
+function checklogmail(){
+    console.log("entered into check mail");
+    var decimal=  /^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
+    const element=document.getElementById('logEmail');
+    const email=element.value;
+    if(email.match(decimal)){
+        console.log("match");
+        document.getElementById('alertemail').innerHTML=``;
+        document.getElementById('logbutton').disabled = false;
+    }
+    else{
+        console.log("notmatch");
+        document.getElementById('alertemail').innerHTML=`enter valid email`;
+        document.getElementById('logbutton').disabled = true;
+    }
+}
+
+function checkregmail(){
+    console.log("entered into check mail");
+    var decimal=  /^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
+    const element=document.getElementById('inputEmail');
+    const email=element.value;
+    if(email.match(decimal)){
+        console.log("match");
+        document.getElementById('alertregmail').innerHTML=``;
+        document.getElementById('sign').disabled = false;
+    }
+    else{
+        console.log("notmatch");
+        document.getElementById('alertregmail').innerHTML=`enter valid email`;
+        document.getElementById('sign').disabled = true;
+    }
+}
+
+
+function checkregname(){
+    console.log("entered into check name");
+    var decimal=  /^[a-z0-9_-]{3,15}$/;
+    const element=document.getElementById('inputName');
+    const email=element.value;
+    if(email.match(decimal)){
+        console.log("match");
+        document.getElementById('alertregname').innerHTML=``;
+        document.getElementById('sign').disabled = false;
+    }
+    else{
+        console.log("notmatch");
+        document.getElementById('alertregname').innerHTML=`Username must be lowercase and have atleast 3 letters`;
+        document.getElementById('sign').disabled = true;
+    }
+}
+
+function checkregphone(){
+    console.log("entered into check name");
+    var decimal=  /^[2-9]{2}[0-9]{8}$/;
+    const element=document.getElementById('inputPhone');
+    const email=element.value;
+    if(email.match(decimal)){
+        console.log("match");
+        document.getElementById('alertregphone').innerHTML=``;
+        document.getElementById('sign').disabled = false;
+    }
+    else{
+        console.log("notmatch");
+        document.getElementById('alertregphone').innerHTML=`10 digit mobile number need to be entered`;
+        document.getElementById('sign').disabled = true;
+    }
+}
+
+function checkregpass(){
+    console.log("entered into check name");
+    var decimal=  /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,15}$/;
+    const element=document.getElementById('inputPassword');
+    const email=element.value;
+    if(email.match(decimal)){
+        console.log("match");
+        document.getElementById('alertregpass').innerHTML=``;
+        document.getElementById('sign').disabled = false;
+    }
+    else{
+        console.log("notmatch");
+        document.getElementById('alertregpass').innerHTML=`Password must have one uppercase, one number and one special character`;
+        document.getElementById('sign').disabled = true;
+    }
+}
+
+function checkregconf(){
+    console.log("entered into check name");
+    const confirm=document.getElementById('inputPassword');
+    const conf=confirm.value;
+    const element=document.getElementById('rePassword');
+    const email=element.value;
+    if(email==conf){
+        console.log("match");
+        document.getElementById('alertregconf').innerHTML=``;
+        document.getElementById('sign').disabled = false;
+    }
+    else{
+        console.log("notmatch");
+        document.getElementById('alertregconf').innerHTML=`Password not maching`;
+        document.getElementById('sign').disabled = true;
+    }
+}
