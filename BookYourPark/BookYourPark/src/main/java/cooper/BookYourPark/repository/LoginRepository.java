@@ -12,5 +12,6 @@ import java.util.Optional;
 public interface LoginRepository extends JpaRepository<Login, Integer> {
 
     Optional<Login> findByMailidAndPassword(String mailId, String password);
+
     List<Login> findByMailid(String mailId);
 }

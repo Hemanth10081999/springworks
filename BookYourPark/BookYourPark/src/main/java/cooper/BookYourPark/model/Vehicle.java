@@ -1,5 +1,7 @@
 package cooper.BookYourPark.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.HashSet;
@@ -20,13 +22,17 @@ public class Vehicle {
     private String colour;
 
     @OneToMany
-    @JoinColumn(name = "parking_id")
+    @JoinColumn(name = "vehicle_id")
     private Set<Parking> parking=new HashSet<>();
 
 
     @ManyToOne
+    //@JsonIgnore
     @JoinColumn(name = "login_id")
     private Login login;
+
+
+
 
     public Set<Parking> getParking() {
         return parking;

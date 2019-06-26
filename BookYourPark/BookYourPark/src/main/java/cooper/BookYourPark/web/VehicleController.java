@@ -54,4 +54,6 @@ public class VehicleController {
         vehicleService.deletevehicleByVehicleId(vehicleId);
         return new ResponseEntity<>(HttpStatus.OK);
     }
+
+
 }

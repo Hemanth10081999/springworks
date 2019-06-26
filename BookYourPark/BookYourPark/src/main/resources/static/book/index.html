@@ -9,7 +9,7 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
-
+    <script src="script.js"></script>
     <!-- CSS for animation -->
     <style>
             th,td{
@@ -93,7 +93,7 @@
 
 
 </head>
-  <body class="custom-class">
+  <body class="custom-class" onload="initial()">
       
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -145,12 +145,12 @@
                         <div class="row">
                                 <div class="col-md-6" style="position: relative;">
                                     <div class="details">
-                                    <h5 align="left">Slot Location</h5>
+                                    <h5 align="left">Location name:</h5>
                                     </div>
                                 </div>
                                 <div class="col-md-6" style="position: relative;">
                                     <div class="details">
-                                    <h5 align="left" style="word-wrap: break-word;">content</h5>
+                                    <h5 align="left" style="word-wrap: break-word;" id="locname"></h5>
                                     </div>
                                 </div>
                         </div>
@@ -159,12 +159,12 @@
                             <div class="row">
                                     <div class="col-md-6" style="position: relative;">
                                         <div class="details">
-                                        <h5 align="left">Slot Name</h5>
+                                        <h5 align="left">Location address:</h5>
                                         </div>
                                     </div>
                                     <div class="col-md-6" style="position: relative;">
                                         <div class="details">
-                                        <h5 align="left" style="word-wrap: break-word;">content</h5>
+                                        <h5 align="left" style="word-wrap: break-word;" id="locaddress"></h5>
                                         </div>
                                     </div>
                             </div>
@@ -173,12 +173,12 @@
                                 <div class="row">
                                         <div class="col-md-6" style="position: relative;">
                                             <div class="details">
-                                            <h5 align="left">Slot Limit</h5>
+                                            <h5 align="left">Slot Name:</h5>
                                             </div>
                                         </div>
                                         <div class="col-md-6" style="position: relative;">
                                             <div class="details">
-                                            <h5 align="left" style="word-wrap: break-word;">content</h5>
+                                            <h5 align="left" style="word-wrap: break-word;" id="slotdetail"></h5>
                                             </div>
                                         </div>
                                 </div>
@@ -188,12 +188,12 @@
                                     <div class="row">
                                             <div class="col-md-6" style="position: relative;">
                                                 <div class="details">
-                                                <h5 align="left">Slot Value</h5>
+                                                <h5 align="left">Slot Price:</h5>
                                                 </div>
                                             </div>
                                             <div class="col-md-6" style="position: relative;">
                                                 <div class="details">
-                                                <h5 align="left" style="word-wrap: break-word;">content</h5>
+                                                <h5 align="left" style="word-wrap: break-word;" id="value"></h5>
                                                 </div>
                                             </div>
                                     </div>
@@ -223,12 +223,15 @@
                     <div class="form-group row">
                             <label for="Vehicle" class="col-sm-2 col-form-label" style="font-weight: bold;font-size: 16px;">Vehicle</label>
                             <div class="col-sm-10">    
-                            <select class="btn btn-light dropdown-toggle" id = "myList">
+                    <select class="btn btn-light dropdown-toggle" id = "myList">
                             <option value = "0">Select one of your vehcle</option>
-                            <option value = "1">Public</option>
+                            
                     </select>
-</div>
                 </div>
+            </div>
+
+
+                
                     <div class="form-group row">
                         <div class="col-sm-10 offset-sm-2">
                             <button type="submit" class="button"  style="background-image:  linear-gradient(-45deg, rgba(182, 42, 182, 0.781), rgba(160, 9, 247, 0.904));   " ><span>Book My Park </span></button>

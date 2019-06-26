@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    
+    <script src="script.js"></script>
     <!-- CSS for animation -->
     <style>
             .button {
@@ -74,7 +74,7 @@
     }
             </style>
 </head>
-<body class="custom-class" style="margin-bottom: 100px">
+<body class="custom-class" style="margin-bottom: 100px" onload="initial()">
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
@@ -118,26 +118,9 @@
                                         <th><b>Type</b></th>
                                     </tr>
                                     </thead>
-                                        <tbody>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>Anna</td>
-                                            <td>Pitt</td>
-                                            <td>35</td>
-                                        </tr>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>Anna</td>
-                                            <td>Pitt</td>
-                                            <td>35</td>
-                                        </tr>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>Anna</td>
-                                            <td>Pitt</td>
-                                            <td>35</td>
-                                        </tr>
-                                
+                                    <tbody id="posts">
+
+                
                                     </tbody>
                         </table>
                     </div>
@@ -150,14 +133,14 @@
                 <h2 class="text-center my-3">Add Vehicle</h2>
 <br>
                 <div class=".bs-example">
-                    <form action="/examples/actions/confirmation.php" method="post">
+                    <form>
                        
                         <div class="form-group row">
                                 <label for="inputvehiclename" class="col-sm-2 col-form-label"style="font-weight: bold;font-size: 16px;" >Name</label>
                                 <div class="col-sm-10">
                                     <input type="text" class="form-control" id="vehiclename" placeholder="Your Vehicle Name" required>
                                 </div>
-                            </div>   
+                        </div>   
                        
                        
                        
@@ -171,12 +154,15 @@
                         <div class="form-group row">
                                 <label for="inputDob" class="col-sm-3 col-form-label" style="font-weight: bold;font-size: 16px;">Vehicle Type</label>
                                 <div class="col-sm-9">
-                                        <input type="radio" name="type" value="bike" checked>Bike<br>
-                                        <input type="radio" name="type" value="minicar">Mini Car<br>
-                                        <input type="radio" name="type" value="familycar">Family Car<br>
-                                        <input type="radio" name="type" value="suv">SUV<br>
-                                </div>
-                            </div>	
+                                        <select class="btn btn-light dropdown-toggle" id = "myList">
+                                                <option value = "">Select Vehicle Type</option>
+                                                <option value = "bike">Bike</option>
+                                                <option value = "minicar">MiniCar</option>
+                                                <option value = "familycar">FamilyCar</option>
+                                                <option value = "suv">SUV</option>
+                                        </select>
+                            </div>
+                        </div>	
                         <div class="form-group row">
                             <label for="inputcolour" class="col-sm-2 col-form-label" style="font-weight: bold;font-size: 16px;">Color</label>
                             <div class="col-sm-10">
@@ -187,7 +173,7 @@
 
                         <div class="form-group row">
                             <div class="col-sm-10 offset-sm-2">
-                                <button type="submit" class="button"  style="background-image:  linear-gradient(-45deg, rgba(182, 42, 182, 0.781), rgba(160, 9, 247, 0.904));   " ><span>Add Vehicle </span></button>
+                                <button class="button" type="button" onclick="add()" style="background-image:  linear-gradient(-45deg, rgba(182, 42, 182, 0.781), rgba(160, 9, 247, 0.904));   " ><span>Add Vehicle </span></button>
                             </div>
                         </div>
                     </form>

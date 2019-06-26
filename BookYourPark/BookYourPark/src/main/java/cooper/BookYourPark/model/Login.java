@@ -1,4 +1,6 @@
 package cooper.BookYourPark.model;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
@@ -37,9 +39,12 @@ public class Login {
     private String city;
     private String pin;
 
-    @OneToMany
-    @JoinColumn(name = "vehicle_id")
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
+    @JsonIgnore
+    @JoinColumn(name = "login_id")
     private Set<Vehicle> vehicles=new HashSet<>();
+
+
 
     public Integer getId() {
         return id;

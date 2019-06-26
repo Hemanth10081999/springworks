@@ -66,9 +66,15 @@ function handleClick(){
                         };
                     
                         postData(Data.url,Data.data)
+
                         .then(data=>{
                             if((JSON.stringify(data))!= null)
                             {
+                                alert("setting cookies");
+                                alert(data.id);
+                                alert(data.userName);
+                                alert(data.mailid);
+                                alert(data.password);
                                 document.cookie = "id="+data.id+";path=/";
                                 document.cookie="userName="+data.userName+";path=/";
                                 document.cookie="mailid="+data.mailid+";path=/";
@@ -76,9 +82,10 @@ function handleClick(){
                                 document.cookie="createDate="+data.createDate+";path=/";
                                 document.cookie="phone="+data.phone+";path=/";
                                 window.location="../location/index.html";
+                                //window.location="../location/index.html";
                             }
                             else{
-                                alert("Bad login credentials")
+                                alert("Bad login credentials");
                             }
                         })
                         .catch(error=>console.error(error));
@@ -86,7 +93,7 @@ function handleClick(){
 
 
 
-                        window.location="../location/index.html";
+                        
                     })
                     .catch(error => console.error(error))
 
@@ -125,50 +132,92 @@ function loginClick(){
     const email=document.getElementById('logEmail').value;
     const password=document.getElementById('logPassword').value;
 
-    const Data={
-        url: 'http://localhost:8080/api/logins/login',
-        data: {
+
+        const url='http://localhost:8080/api/logins/login';
+        const data= {
             'mailid':email,
             'password':password
-        }
-    };
+        };
+        console.log(''+JSON.stringify(data));
+        fetch(url,{
+            method: 'POST',
+            headers: {
+                'Content-Type':'application/json',
+            },
+            body: JSON.stringify(data),
+        })
 
-    postData(Data.url,Data.data)
-    .then(data=>{
-        if((JSON.stringify(data))!= null)
+        .then(response => response.json())
+
+        
+        
+        .then(data=>{
+        if(data== true)
         {
+            console.log("login successful");
+            getdata(email);      
+          }
+        if (data== false) {
+            alert("bad login credentials");
+   
+        }
+        
+    })
+    .catch(error=>console.error(error));
+}
+
+
+
+
+function getdata(email){
+    const url='http://localhost:8080/api/logins/profile';
+    const data= {
+        'mailid':email
+    };
+    console.log(''+JSON.stringify(data));
+    fetch(url,{
+        method: 'POST',
+        headers: {
+            'Content-Type':'application/json',
+        },
+        body: JSON.stringify(data),
+    })
+    .then(response => response.json())
+    .then(data=>{
+        data.map(p=>{
             if ((document.getElementById("check").checked) == true){
                 var d = new Date();
                 d.setTime(d.getTime() + (30*24*60*60*1000));
                 var expires = "expires="+ d.toUTCString();
                 
                 
-                document.cookie = "id="+data.id+";"+expires+";path=/";
-                document.cookie="userName="+data.userName+";"+expires+";path=/";
-                document.cookie="mailid="+data.mailid+";"+expires+";path=/";
-                document.cookie="password="+data.password+";"+expires+";path=/";
-                document.cookie="createDate="+data.createDate+";"+expires+";path=/";
-                document.cookie="phone="+data.phone+";"+expires+";path=/";
+                document.cookie = "id="+p.id+";"+expires+";path=/";
+                document.cookie="userName="+p.userName+";"+expires+";path=/";
+                document.cookie="mailid="+p.mailid+";"+expires+";path=/";
+                document.cookie="password="+p.password+";"+expires+";path=/";
+                document.cookie="createDate="+p.createDate+";"+expires+";path=/";
+                document.cookie="phone="+p.phone+";"+expires+";path=/";
                 window.location="../location/index.html";
             }
             else{
-                document.cookie = "id="+data.id+";path=/";
-                document.cookie="userName="+data.userName+";path=/";
-                document.cookie="mailid="+data.mailid+";path=/";
-                document.cookie="password="+data.password+";path=/";
-                document.cookie="createDate="+data.createDate+";path=/";
-                document.cookie="phone="+data.phone+";path=/";
+                document.cookie = "id="+p.id+";path=/";
+                document.cookie="userName="+p.userName+";path=/";
+                document.cookie="mailid="+p.mailid+";path=/";
+                document.cookie="password="+p.password+";path=/";
+                document.cookie="createDate="+p.createDate+";path=/";
+                document.cookie="phone="+p.phone+";path=/";
                 window.location="../location/index.html";
             }
-            
-        }
-        else{
-            alert("Bad login credentials")
-        }
-        
+
+        });        
     })
     .catch(error=>console.error(error));
+
 }
+
+
+
+
 
 
 

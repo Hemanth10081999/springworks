@@ -36,13 +36,13 @@ public class LoginService {
     }
 
 
-    public Login authUser(String email,String password){
+    public Boolean authUser(String email,String password){
         Optional<Login> loginOptional=loginRepository.findByMailidAndPassword(email,password);
-        if (loginOptional.isPresent()){
-            return loginOptional.get();
+        if(loginOptional.isPresent()){
+            return true;
         }
         else {
-            return null;
+            return false;
         }
     }
 

@@ -31,7 +31,6 @@ public class Location {
 
     @OneToMany
     @JoinColumn(name = "location_id")
-    @JsonIgnore
     private Set<Slotdetails> slotdetails=new HashSet<>();
 
     public Set<Slotdetails> getSlotdetails() {

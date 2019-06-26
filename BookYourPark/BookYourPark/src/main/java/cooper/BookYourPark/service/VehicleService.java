@@ -1,9 +1,9 @@
 package cooper.BookYourPark.service;
 
 
-import cooper.BookYourPark.model.Type;
+
 import cooper.BookYourPark.model.Vehicle;
-import cooper.BookYourPark.repository.TypeRepository;
+
 import cooper.BookYourPark.repository.VehicleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -32,4 +32,12 @@ public class VehicleService {
     public void deletevehicleByVehicleId(Integer vehicleId){
         vehicleRepository.deleteById(vehicleId);
     }
+
+    public List<Vehicle> get(Integer login){
+        return vehicleRepository.findByLogin(login);
+    }
+
 }
+
+
+

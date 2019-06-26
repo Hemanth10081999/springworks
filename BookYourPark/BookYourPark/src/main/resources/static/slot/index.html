@@ -8,7 +8,7 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
+    <script src="script.js"></script>
 
     <!-- CSS for animation -->
     <style>
@@ -115,7 +115,7 @@
 	        <div class="navbar-nav ml-auto">
                     <a href="../profile/index.html" class="nav-item nav-link active">Profile</a>
                     <a href="../vehicle/index.html" class="nav-item nav-link active">Vehicle</a>
-            <a href="#" class="nav-item nav-link active">Logout</a>
+            <a href="#" class="nav-item nav-link active" onclick="logout()">Logout</a>
 			</div>
         </div>
     </nav>
@@ -130,7 +130,7 @@
             <div class="container mt-1">
                 <div class="row">
                     <h6 class="navbar-brand" style="color: #FFFFFF">Location :</h6>
-                    <h6 class="navbar-brand" style="color: #FFFFFF">Dlf It Park</h6>   <!--add query to display selected location-->
+                    <h6 class="navbar-brand" style="color: #FFFFFF" id="locname" ></h6>   <!--add query to display selected location-->
 
                 </div>
             </div>
@@ -143,9 +143,9 @@
                         <div class="form-group mr-4">
                             <select class="btn btn-light dropdown-toggle" id = "myList">
                                 <option value = "1">Select floor</option>
-                                <option value = "2">Public</option>
-                                <option value = "3">Private</option>
-                                <option value = "4">Public</option>
+                                <option value = "2">0</option>
+                                <option value = "3">-1</option>
+                                <option value = "4">-2</option>
 
                             </select>
                         </div>
@@ -171,17 +171,53 @@
             <!--script for map-->
             <div id="map"></div>
             <script>
-            function initMap() 
-            {
-            var uluru = {lat: 13.023359, lng: 80.176392}; //should change depending on the location
-            var map = new google.maps.Map(
-                document.getElementById('map'), {zoom: 17, center: uluru});
-            var marker = new google.maps.Marker({position: uluru, map: map});
-            }
+
             </script>
     
+    <div class="container mt-3">
+        <div class="row">
+                <div class="col-md-6" style="position: relative;">
+                    <div class="details">
+                    <h5 align="left">Location Address</h5>
+                    </div>
+                </div>
+                <div class="col-md-6" style="position: relative;">
+                    <div class="details">
+                    <h5 align="left" id="add" style="word-wrap: break-word;"></h5>
+                    </div>
+                </div>
+        </div>
+    </div>
     
-           
+    <div class="container mt-3">
+        <div class="row">
+                <div class="col-md-6" style="position: relative;">
+                    <div class="details">
+                    <h5 align="left">Location City</h5>
+                    </div>
+                </div>
+                <div class="col-md-6" style="position: relative;">
+                    <div class="details">
+                    <h5 align="left" id="city" style="word-wrap: break-word;"></h5>
+                    </div>
+                </div>
+        </div>
+    </div>
+
+    <div class="container mt-3">
+        <div class="row">
+                <div class="col-md-6" style="position: relative;">
+                    <div class="details">
+                    <h5 align="left">Support Number</h5>
+                    </div>
+                </div>
+                <div class="col-md-6" style="position: relative;">
+                    <div class="details">
+                    <h5 align="left" id="support" style="word-wrap: break-word;"></h5>
+                    </div>
+                </div>
+        </div>
+    </div>
 
         
 
@@ -198,6 +234,7 @@
                                     <th><b>#</b></th>
                                     <th><b>Slotname</b></th>
                                     <th><b>Floor</b></th>
+                                    <th><b>Limit</b></th>
                                     <th><b>Value</b></th>
                                 </tr>
                                 </thead>

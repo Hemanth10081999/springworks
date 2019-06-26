@@ -3,6 +3,7 @@ package cooper.BookYourPark.web;
 
 
 import cooper.BookYourPark.model.Login;
+import cooper.BookYourPark.model.Vehicle;
 import cooper.BookYourPark.service.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @RestController
 @RequestMapping("/api")
@@ -25,6 +27,8 @@ public class LoginController {
         return loginService.getallLogin();
     }
 
+
+    @CrossOrigin
     @RequestMapping(value = "/logins/{loginId}",method = RequestMethod.GET,produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public Login getloginbyId(@PathVariable("loginId")Integer loginId){
         return loginService.getLoginById(loginId);
@@ -56,8 +60,7 @@ public class LoginController {
 
     @CrossOrigin
     @RequestMapping(value = "/logins/login",method = RequestMethod.POST,produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-
-    public Login checkLogin(@RequestBody Login login){
+    public Boolean checkLogin(@RequestBody Login login){
         return loginService.authUser(login.getMailid(),login.getPassword());
     }
 
@@ -66,4 +69,12 @@ public class LoginController {
     public List<Login> viewProfile(@RequestBody Login login){
         return loginService.findProfile(login.getMailid());
     }
+
+    @CrossOrigin
+    @RequestMapping(value = "/logins/{loginId}/vehicles",method = RequestMethod.GET,produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public Set<Vehicle> getVehiclesByloginbyId(@PathVariable("loginId")Integer loginId){
+        Login login = loginService.getLoginById(loginId);
+        return login.getVehicles();
+    }
+
 }

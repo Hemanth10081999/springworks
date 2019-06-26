@@ -9,6 +9,10 @@ function logout(){
 }
 
 function loadlocation(){
+
+    
+    document.cookie = "location=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+
     fetch('http://localhost:8080/api/locations')
         .then((res)=>res.json())
         .then(posts=>{
@@ -17,6 +21,7 @@ function loadlocation(){
             
             let output='';
             var x=1;
+            
             posts.map(p=>{
 
                 

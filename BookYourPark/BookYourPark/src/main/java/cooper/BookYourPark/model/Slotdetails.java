@@ -1,6 +1,8 @@
 package cooper.BookYourPark.model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -14,6 +16,9 @@ public class Slotdetails {
     private String name;
     private Integer floor;
     private Boolean availability;
+    private String type;
+    private Integer time;
+    private Integer value;
 
 
     @OneToMany
@@ -21,20 +26,33 @@ public class Slotdetails {
     private Set<Parking> parking=new HashSet<>();
 
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name = "location_id")
     private Location location;
 
-    @ManyToOne
-    @JoinColumn(name = "slot_id")
-    private Type type;
 
-
-    public Type getType() {
+    public String getType() {
         return type;
     }
 
-    public void setType(Type type) {
+    public void setType(String type) {
         this.type = type;
+    }
+
+    public Integer getTime() {
+        return time;
+    }
+
+    public void setTime(Integer time) {
+        this.time = time;
+    }
+
+    public Integer getValue() {
+        return value;
+    }
+
+    public void setValue(Integer value) {
+        this.value = value;
     }
 
     public Set<Parking> getParking() {
