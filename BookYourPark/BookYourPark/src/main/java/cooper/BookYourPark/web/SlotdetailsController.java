@@ -2,6 +2,7 @@ package cooper.BookYourPark.web;
 
 import cooper.BookYourPark.model.Location;
 import cooper.BookYourPark.model.Slotdetails;
+import cooper.BookYourPark.repository.SlotdetailsRepository;
 import cooper.BookYourPark.service.LocationService;
 import cooper.BookYourPark.service.SlotdetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,9 @@ public class SlotdetailsController {
 
     @Autowired
     private SlotdetailsService slotdetailsService;
+
+    @Autowired
+    private SlotdetailsRepository slotdetailsRepository;
 
     @RequestMapping(value = "/slotdetails",method = RequestMethod.GET,produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public List<Slotdetails> getslotdetails(){
@@ -54,4 +58,27 @@ public class SlotdetailsController {
         slotdetailsService.deleteslotdetailsBySlotdetailsId(slotdetailsId);
         return new ResponseEntity<>(HttpStatus.OK);
     }
+
+
+
+    @PutMapping(value= "/slotdetails/{slotdetailsId}")
+    public ResponseEntity<Slotdetails> update(@PathVariable("slotdetailsId") Integer slotdetailsId,
+                                          @RequestBody Slotdetails slotdetails){
+        return slotdetailsRepository.findById(slotdetailsId)
+                .map(record -> {
+                    record.setName(slotdetails.getName());
+                    record.setFloor(slotdetails.getFloor());
+                    record.setAvailability(slotdetails.getAvailability());
+                    record.setType(slotdetails.getType());
+                    record.setTime(slotdetails.getTime());
+                    record.setValue(slotdetails.getValue());
+
+                    Slotdetails updated = slotdetailsRepository.save(record);
+                    return ResponseEntity.ok().body(updated);
+                }).orElse(ResponseEntity.notFound().build());
+    }
+
+
+
+
 }

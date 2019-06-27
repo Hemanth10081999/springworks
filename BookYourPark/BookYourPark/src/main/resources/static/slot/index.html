@@ -139,18 +139,19 @@
             <div class="container mt-1">
                 <div class="row">
                     
-                    <form class="form-inline" action="#" method="post">
+                    <form class="form-inline">
                         <div class="form-group mr-4">
                             <select class="btn btn-light dropdown-toggle" id = "myList">
-                                <option value = "1">Select floor</option>
-                                <option value = "2">0</option>
-                                <option value = "3">-1</option>
-                                <option value = "4">-2</option>
+                                <option value = "0">Select Slot Type</option>
+                                <option value = "bike">Bike</option>
+                                <option value = "minicar">MiniCar</option>
+                                <option value = "familycar">FamilyCar</option>
+                                <option value = "suv">SUV</option>
 
                             </select>
                         </div>
                         <div class="form-group mr-2">
-                            <button type="submit" class="button" ><span>Filter</span></button>
+                            <button type="button" class="button" onclick="sort()"><span>Filter</span></button>
                         </div>
                     </form>
                 </div>

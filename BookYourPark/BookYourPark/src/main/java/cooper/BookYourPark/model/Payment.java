@@ -13,9 +13,7 @@ public class Payment {
     private Integer mode;
     private Integer amount;
 
-    @OneToOne
-    @JoinColumn(name = "parking_id")
-    private Parking parking;
+
 
     public Integer getId() {
         return id;
@@ -41,11 +39,5 @@ public class Payment {
         this.amount = amount;
     }
 
-    public Parking getParking() {
-        return parking;
-    }
 
-    public void setParking(Parking parking) {
-        this.parking = parking;
-    }
 }

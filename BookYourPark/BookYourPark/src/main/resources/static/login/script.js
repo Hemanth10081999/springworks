@@ -53,7 +53,7 @@ function handleClick(){
                     .then(data => console.log(JSON.stringify(data)))
                     .then(response => {
                     
-
+/*
 
                         console.log('entered into click');
 
@@ -70,7 +70,6 @@ function handleClick(){
                         .then(data=>{
                             if((JSON.stringify(data))!= null)
                             {
-                                alert("setting cookies");
                                 alert(data.id);
                                 alert(data.userName);
                                 alert(data.mailid);
@@ -91,8 +90,9 @@ function handleClick(){
                         .catch(error=>console.error(error));
 
 
-
-
+*/
+                        
+                        reggetdata(email);
                         
                     })
                     .catch(error => console.error(error))
@@ -215,6 +215,37 @@ function getdata(email){
 
 }
 
+function reggetdata(email){
+    const url='http://localhost:8080/api/logins/profile';
+    const data= {
+        'mailid':email
+    };
+    console.log(''+JSON.stringify(data));
+    fetch(url,{
+        method: 'POST',
+        headers: {
+            'Content-Type':'application/json',
+        },
+        body: JSON.stringify(data),
+    })
+    .then(response => response.json())
+    .then(data=>{
+        data.map(p=>{
+
+                document.cookie = "id="+p.id+";path=/";
+                document.cookie="userName="+p.userName+";path=/";
+                document.cookie="mailid="+p.mailid+";path=/";
+                document.cookie="password="+p.password+";path=/";
+                document.cookie="createDate="+p.createDate+";path=/";
+                document.cookie="phone="+p.phone+";path=/";
+                window.location="../location/index.html";
+            
+
+        });        
+    })
+    .catch(error=>console.error(error));
+
+}
 
 
 
@@ -226,7 +257,18 @@ function getdata(email){
 function findcookie(){
     var username = getCookie("id");
     if (username != "") {
-     window.location="../location/index.html";
+     
+        if(getCookie("parked")!=""){
+            
+            window.location="../outpark/index.html";
+        }
+     else{
+        
+        window.location="../location/index.html";
+     }
+     
+     
+        
     }
 }
 

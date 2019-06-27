@@ -22,6 +22,7 @@ public class Slotdetails {
 
 
     @OneToMany
+    @JsonIgnore
     @JoinColumn(name = "parking_id")
     private Set<Parking> parking=new HashSet<>();
 

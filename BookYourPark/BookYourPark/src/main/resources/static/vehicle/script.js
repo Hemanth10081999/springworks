@@ -1,3 +1,16 @@
+function logout(){
+    document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    document.cookie = "userName=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    document.cookie = "mailid=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    document.cookie = "password=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    document.cookie = "createDate=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    document.cookie = "phone=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    window.location="../home/index.html";
+}
+
+
+
+
 function initial(){
     let element = document.getElementById("posts");
     while (element.firstChild) {
@@ -11,17 +24,12 @@ function initial(){
     fetch('http://localhost:8080/api/logins/'+getid+'/vehicles')
 
     .then(response => response.json())
-    // .then(data => console.log(JSON.stringify(data)))
     .then(posts=>{
         
               
         var x=1;
 
         posts.forEach(p=>{
-            // alert("p.number");
-            // alert("p.name");
-            // alert("p.type");
-
             document.getElementById('posts').innerHTML+=`
 
             <tr>

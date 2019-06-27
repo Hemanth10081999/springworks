@@ -55,6 +55,9 @@ function loadslot(){
         var x=1;
         
         posts.slotdetails.forEach(p => {
+
+          //alert(p.availability);
+          if(p.availability==true){
                     
             document.getElementById('posts').innerHTML+=`
 
@@ -67,7 +70,7 @@ function loadslot(){
             </tr>
             `;
     
- 
+          }
         });
     })
     .catch((err)=>{
@@ -104,4 +107,53 @@ function getCookie(cname) {
   var map = new google.maps.Map(
       document.getElementById('map'), {zoom: 17, center: uluru});
   var marker = new google.maps.Marker({position: uluru, map: map});
+  }
+
+
+
+
+
+  function sort(){
+    var sort = document.getElementById('myList');
+    var strSel = sort.options[sort.selectedIndex].value;
+  
+    let element = document.getElementById("posts");
+    while (element.firstChild) {
+      element.removeChild(element.firstChild);
+    }
+
+    fetch('http://localhost:8080/api/locations/'+loc)
+    .then((res)=>res.json())
+    .then(posts=>{
+       var x=1;
+        
+        posts.slotdetails.forEach(p => {
+
+          //alert(p.availability);
+          if(p.availability==true){
+
+            if(strSel==0){
+              loadslot();
+            }
+
+            else if(p.type==strSel){
+                    
+            document.getElementById('posts').innerHTML+=`
+
+            <tr onclick="locClick(${p.id})">
+            <td>${x++}</td>
+            <td>${p.name}</td>
+            <td>${p.floor}</td>
+            <td>${p.time}</td>
+            <td>${p.value}</td>
+            </tr>
+            `;
+            }
+          }
+        });
+    })
+    .catch((err)=>{
+        console.log(err);
+    });
+
   }

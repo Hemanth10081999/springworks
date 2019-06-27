@@ -1,4 +1,21 @@
+function logout(){
+  document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+  document.cookie = "userName=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+  document.cookie = "mailid=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+  document.cookie = "password=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+  document.cookie = "createDate=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+  document.cookie = "phone=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+  window.location="../home/index.html";
+}
+
+
+
+
 function initial(){
+
+  document.getElementById('bookbutton').disabled=true;
+  document.getElementById('payment').hidden=true;
+
     slot=getCookie('slot');
     loc=getCookie('location');
     fetch('http://localhost:8080/api/locations/'+loc)
@@ -18,12 +35,19 @@ function initial(){
     });
 
 
-    fetch('http://localhost:8080/api/slotdetails/'+loc)
+    fetch('http://localhost:8080/api/slotdetails/'+slot)
     .then((res)=>res.json())
     .then(posts=>{        
         
             document.getElementById('slotdetail').innerHTML=posts.name;
-            document.getElementById('value').innerHTML=posts.value;      
+            document.getElementById('value').innerHTML=posts.value; 
+        
+            document.cookie = "sid="+posts.id+";path=/";
+            document.cookie = "stype="+posts.type+";path=/";  
+            document.cookie = "svalue="+posts.value+";path=/";  
+            document.cookie = "sname="+posts.name+";path=/";  
+            document.cookie = "sfloor="+posts.floor+";path=/";  
+            document.cookie = "stime="+posts.time+";path=/";  
         
     })
     .catch((err)=>{
@@ -33,12 +57,49 @@ function initial(){
 
 
 
+
+
     var d = new Date();
     var n = d.toISOString().replace('Z', '');
-
     document.getElementById('fromTime').defaultValue=n;
 
-}
+    var d1 = new Date();
+    d1.setHours( d1.getHours() + 1 );
+    var n1 = d1.toISOString().replace('Z', '');
+    document.getElementById('toTime').defaultValue=n1;
+
+
+
+    var getid=getCookie('id');
+    fetch('http://localhost:8080/api/logins/'+getid+'/vehicles')
+    .then(response => response.json())
+    .then(posts=>{
+            posts.forEach(p=>{
+
+              document.cookie = "vehicle="+p.id+";path=/";  
+
+              if(p.type==getCookie('stype')){
+
+              var ne=p.name+' '+p.number;
+
+            document.getElementById('myList').innerHTML+=`
+
+            <option value = "${p.number}">${ne}</option>
+            
+            `;
+
+              }
+            console.log(p.title)
+        })
+    })
+    .catch((err)=>{
+        console.log(err);
+    });
+
+
+
+
+  }
 
 
 function getCookie(cname) {
@@ -58,4 +119,132 @@ function getCookie(cname) {
   }
 
 
+  function verify(){
+    var sort = document.getElementById('myList');
+    var strSel = sort.options[sort.selectedIndex].value;
 
+    if(strSel=="0"){
+      document.getElementById('alertregpass').innerHTML=`Select a vehicle that matches the slot type.`;
+    }
+    else{
+      document.getElementById('alertregpass').innerHTML=``;
+      document.getElementById('payment').hidden=false;
+
+
+      var dt1 = new Date(document.getElementById('fromTime').value);
+      var dt2 = new Date(document.getElementById('toTime').value);
+
+      var diff =(dt2.getTime() - dt1.getTime()) / 1000;
+      diff /= (60 * 60);
+      var val= Math.abs(Math.round(diff));
+      var value=getCookie('svalue');
+      var amount=val*value;
+      document.getElementById('pay').innerHTML=`${amount}`;
+      //alert(val*value);
+
+      document.getElementById('bookbutton').disabled=false;
+    }
+  }
+
+
+function book(){
+
+      var dt1 = new Date(document.getElementById('fromTime').value);
+      var dt2 = new Date(document.getElementById('toTime').value);
+      var vehicle=getCookie('vehicle');
+      var slot=getCookie('slot');
+
+      const url='http://localhost:8080/api/parkings';
+      const data= {
+        'inTime':dt1,
+        'outTime':dt2,
+        'vehicle':{
+          'id':vehicle
+        },
+        'slotdetails':{
+          'id':slot
+        }
+      };
+      console.log(''+JSON.stringify(data));
+      fetch(url,{
+          method: 'POST',
+          headers: {
+              'Content-Type':'application/json',
+          },
+          body: JSON.stringify(data),
+      })
+
+      .then(response => response.json())
+      .then(data=>{ 
+
+//new code
+        //alert("it might work");
+        var sname=getCookie('sname');
+        var stype=getCookie('stype');
+        var sfloor=getCookie('sfloor');
+        var svalue=getCookie('svalue');
+        var stime=getCookie('stime');
+        var sid=getCookie('sid');
+
+        document.cookie = "parked=true;path=/";  
+
+        const Data={
+          url: 'http://localhost:8080/api/slotdetails/'+sid,
+          data: {
+            "name": sname,
+            "floor": sfloor,
+            "availability": false,
+            "type": stype,
+            "time": stime,
+            "value": svalue
+          }
+      };
+  
+      putData(Data.url,Data.data)
+
+      .then(data=>{ window.location.href="../outpark/index.html"})
+      .catch(error=>console.error(error));
+
+
+
+
+//new code
+       })
+      .catch(error=>console.error(error));
+
+}
+
+function postData(url='',data={}){
+  console.log('posting starts');
+  return fetch(url,{
+      method:'POST',
+      mode:'cors',
+      cache: 'no-cache',
+      credentials:'same-origin',
+      headers:{
+          'Content-Type':'application/json',
+      },
+      redirect:'follow',
+      referrer: 'no-refrrer',
+      body: JSON.stringify(data),
+  })
+  .then(response => response.json());
+}
+
+
+function putData(url='',data={}){
+  console.log('posting starts');
+  return fetch(url,{
+      method:'PUT',
+      mode:'cors',
+      cache: 'no-cache',
+      credentials:'same-origin',
+      headers:{
+          'Content-Type':'application/json',
+      },
+      redirect:'follow',
+      referrer: 'no-refrrer',
+      body: JSON.stringify(data),
+  })
+  .then(response => response.json());
+}

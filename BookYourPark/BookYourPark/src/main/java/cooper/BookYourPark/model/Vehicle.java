@@ -15,13 +15,14 @@ public class Vehicle {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
     private String name;
-    @NotNull
+    
     private String type;
-    @NotNull
+
     private String number;
     private String colour;
 
     @OneToMany
+    @JsonIgnore
     @JoinColumn(name = "vehicle_id")
     private Set<Parking> parking=new HashSet<>();
 

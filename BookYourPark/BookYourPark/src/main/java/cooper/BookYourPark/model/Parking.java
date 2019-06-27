@@ -22,9 +22,10 @@ public class Parking {
     @JoinColumn(name = "slotdetails_id")
     private Slotdetails slotdetails;
 
-    @OneToOne
-    @JoinColumn(name = "payment_id")
-    private Payment payment;
+
+
+
+
 
     public Integer getId() {
         return id;
@@ -66,11 +67,5 @@ public class Parking {
         this.slotdetails = slotdetails;
     }
 
-    public Payment getPayment() {
-        return payment;
-    }
 
-    public void setPayment(Payment payment) {
-        this.payment = payment;
-    }
 }
