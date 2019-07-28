@@ -70,11 +70,6 @@ public class LoginController {
         return loginService.findProfile(login.getMailid());
     }
 
-    @CrossOrigin
-    @RequestMapping(value = "/logins/{loginId}/vehicles",method = RequestMethod.GET,produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public Set<Vehicle> getVehiclesByloginbyId(@PathVariable("loginId")Integer loginId){
-        Login login = loginService.getLoginById(loginId);
-        return login.getVehicles();
-    }
+
 
 }

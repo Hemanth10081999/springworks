@@ -20,6 +20,10 @@ public class VehicleService {
         return (List<Vehicle>) vehicleRepository.findAll();
     }
 
+    public List<Vehicle> getvehiclebylogin(Integer login) {
+        return (List<Vehicle>) vehicleRepository.findByLogin(login);
+    }
+
 
     public Vehicle getVehicleById(Integer vehicleId) {
         return vehicleRepository.findById(vehicleId).get();
@@ -33,11 +37,8 @@ public class VehicleService {
         vehicleRepository.deleteById(vehicleId);
     }
 
-    public List<Vehicle> get(Integer login){
-        return vehicleRepository.findByLogin(login);
-    }
+
 
 }
-
 
 

@@ -26,11 +26,7 @@ public class Vehicle {
     @JoinColumn(name = "vehicle_id")
     private Set<Parking> parking=new HashSet<>();
 
-
-    @ManyToOne
-    //@JsonIgnore
-    @JoinColumn(name = "login_id")
-    private Login login;
+    private Integer login;
 
 
 
@@ -43,11 +39,11 @@ public class Vehicle {
         this.parking = parking;
     }
 
-    public Login getLogin() {
+    public Integer getLogin() {
         return login;
     }
 
-    public void setLogin(Login login) {
+    public void setLogin(Integer login) {
         this.login = login;
     }
 

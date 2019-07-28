@@ -39,10 +39,7 @@ public class Login {
     private String city;
     private String pin;
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
-    @JsonIgnore
-    @JoinColumn(name = "login_id")
-    private Set<Vehicle> vehicles=new HashSet<>();
+
 
 
 
@@ -158,11 +155,5 @@ public class Login {
         this.pin = pin;
     }
 
-    public Set<Vehicle> getVehicles() {
-        return vehicles;
-    }
 
-    public void setVehicles(Set<Vehicle> vehicles) {
-        this.vehicles = vehicles;
-    }
 }

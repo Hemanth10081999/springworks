@@ -27,10 +27,20 @@ public class VehicleController {
         return vehicleService.getallVehicles();
     }
 
+
+
+
     @RequestMapping(value = "/vehicles/{vehicleId}",method = RequestMethod.GET,produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public Vehicle getvehiclebyId(@PathVariable("vehicleId")Integer vehicleId){
         return vehicleService.getVehicleById(vehicleId);
     }
+
+    @RequestMapping(value = "/vehicles/login/{loginId}",method = RequestMethod.GET,produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public List<Vehicle> getbylogin(@PathVariable("loginId")Integer loginId){
+        return vehicleService.getvehiclebylogin(loginId);
+    }
+
+
 
     @RequestMapping(value = "/vehicles",method = RequestMethod.POST,produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<Vehicle> CreateVehicle(@RequestBody Vehicle vehicle){
