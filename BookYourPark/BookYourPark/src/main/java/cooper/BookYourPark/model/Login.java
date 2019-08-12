@@ -17,6 +17,8 @@ public class Login {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
+    private Integer role;
+
     private  String userName;
 
     private String mailid;
@@ -38,10 +40,24 @@ public class Login {
     private String address;
     private String city;
     private String pin;
+    private String picurl;
 
 
+    public Integer getRole() {
+        return role;
+    }
 
+    public void setRole(Integer role) {
+        this.role = role;
+    }
 
+    public String getPicurl() {
+        return picurl;
+    }
+
+    public void setPicurl(String picurl) {
+        this.picurl = picurl;
+    }
 
     public Integer getId() {
         return id;

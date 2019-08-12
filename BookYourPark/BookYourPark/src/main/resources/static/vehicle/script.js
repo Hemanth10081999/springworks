@@ -37,6 +37,8 @@ function initial() {
             <td>${p.number}</td>
             <td>${p.name}</td>
             <td>${p.type}</td>
+            <td><i class="fa fa-edit" onclick="edit(${p.id})"></i> </td>
+            <td><i class="fas fa-file-excel" onclick="del(${p.id})"></i> </td>
             </tr>
             
             
@@ -49,10 +51,52 @@ function initial() {
         });
 }
 
+function edit(id) {
+
+    console.log("edited");
+}
+
+
+function del(id) {
+
+    if (confirm("Data will be deleted Permenantly") == true) {
+        const Data = {
+            url: 'http://localhost:8080/api/vehicles/' + id,
+            data: {
+
+            }
+        };
+
+        deleteData(Data.url, Data.data)
+
+        .then(data => {
+            initial();
+        })
+
+        //  .catch(error => console.error(error));
+    }
+
+
+}
 
 
 
+function deleteData(url = '', data = {}) {
+    console.log('posting starts');
+    return fetch(url, {
+        method: 'DELETE',
+        mode: 'cors',
+        cache: 'no-cache',
+        credentials: 'same-origin',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        redirect: 'follow',
+        referrer: 'no-refrrer'
+    })
 
+    initial();
+}
 
 
 
@@ -90,6 +134,15 @@ function add() {
     .catch(error => console.error(error));
 
 }
+
+
+
+
+
+
+
+
+
 
 
 function postData(url = '', data = {}) {
