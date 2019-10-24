@@ -4,6 +4,7 @@ plugins {
 }
 
 apply plugin: 'io.spring.dependency-management'
+apply plugin: 'java-library'
 
 group = 'cooper'
 version = '0.0.1-SNAPSHOT'
@@ -21,4 +22,18 @@ dependencies {
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 
+}
+
+springBoot {
+    mainClassName = 'cooper.BookYourPark.BookYourParkApplication'
+}
+
+bootJar {
+    mainClassName = 'cooper.BookYourPark.BookYourParkApplication'
+}
+
+bootJar {
+    manifest {
+        attributes 'Start-Class': 'cooper.BookYourPark.BookYourParkApplication'
+    }
 }
