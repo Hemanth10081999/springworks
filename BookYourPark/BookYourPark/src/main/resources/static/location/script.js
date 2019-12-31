@@ -11,6 +11,9 @@ function logout() {
 
 var locations = [];
 var markers = [];
+var namelist = [];
+var availablelist = [];
+var idlist = [];
 
 function loadlocation() {
 
@@ -36,6 +39,11 @@ function loadlocation() {
                 `;
 
                 locations[x] = new google.maps.LatLng({ lat: parseFloat(p.latitude), lng: parseFloat(p.longitude) });
+
+                namelist.push(p.locName);
+                availablelist.push(p.availableSlots);
+                idlist.push(p.locId);
+                console.log(namelist[x]);
                 x = x + 1;
 
             });
@@ -65,7 +73,11 @@ function showPosition(position) {
 
 
 
+
+
+
 function initMaps(latitude, longitude) {
+
     var newlatitude = latitude.toFixed(6);
     var newlongitude = longitude.toFixed(6);
     var mapProp = {
@@ -73,25 +85,56 @@ function initMaps(latitude, longitude) {
         zoom: 16,
     };
     var map = new google.maps.Map(document.getElementById("map"), mapProp);
-    var marker = new google.maps.Marker({ position: new google.maps.LatLng(parseFloat(newlatitude), parseFloat(newlongitude)), map: map });
-    console.log(locations.length);
+
+
+
+    var image = 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png';
+    var marker = new google.maps.Marker({ position: new google.maps.LatLng(parseFloat(newlatitude), parseFloat(newlongitude)), map: map, icon: image });
+    console.log("found " + locations.length);
+
+
     for (var i = 0; i < locations.length; i++) {
-        console.log(locations[i]);
-        markers.push(new google.maps.Marker({
+
+        var marker = new google.maps.Marker({
             position: locations[i],
             map: map,
+            title: namelist[i],
             animation: google.maps.Animation.DROP
-        }));
+        });
+
+        google.maps.event.addListener(marker, 'click', (function(marker, i) {
+            return function() {
+                console.log(namelist[i]);
+
+
+
+                var infowindow = new google.maps.InfoWindow({
+                    content: '<h6>' + namelist[i] + '</h6>' +
+                        '<p> Slots available : ' + availablelist[i] + '</p>' +
+                        '<h6 onclick="locClick(' + idlist[i] + ')"><u>BOOK HERE</u><h6>'
+                });
+
+
+                infowindow.open(map, marker);
+                map.setZoom(16);
+                map.setCenter(marker.position);
+            }
+        })(marker, i));
+
+
 
     }
+
 }
 
 
 function clearMarkers() {
-    for (var i = 0; i < locations.length; i++) {
-        markers[i].setMap(null);
-    }
+    document.getElementById("map").innerHTML = "";
+    locations = [];
     markers = [];
+    namelist = [];
+    availablelist = [];
+    idlist = [];
 }
 
 
@@ -132,8 +175,17 @@ function sorttable() {
             <td>${p.availableSlots}</td>
             </tr>
             `;
+
+
                     locations[x] = new google.maps.LatLng({ lat: parseFloat(p.latitude), lng: parseFloat(p.longitude) });
+
+                    namelist.push(p.locName);
+                    availablelist.push(p.availableSlots);
+                    idlist.push(p.locId);
+                    console.log(namelist[x]);
                     x = x + 1;
+
+
                 });
             })
             .catch((err) => {
