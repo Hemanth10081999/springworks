@@ -127,15 +127,14 @@
         <nav class="navbar navbar-expand-md navbar-dark" style="background-image: linear-gradient(-45deg, rgba(182, 42, 182, 0.781), rgba(160, 9, 247, 0.904));">
             <a class="navbar-brand"><img src="images/logo.png" height="40" alt="Book Your Park"></a>
             <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <div class="navbar-nav">
 
-                    <a href="https://www.google.com/" class="nav-item nav-link active">Home</a>
-
-                    <a href="../home/index.html" class="nav-item nav-link active">Locations</a>
+                    <a href="../home/index.html" class="nav-item nav-link active">Home</a>
+                    <a href="../location/index.html" class="nav-item nav-link active">Locations</a>
                 </div>
 
                 <div class="navbar-nav ml-auto">
@@ -210,7 +209,7 @@
                         <div class="row">
                             <div class="col-md-6" style="position: relative;">
                                 <div class="details">
-                                    <h5 align="left">Slot Price:</h5>
+                                    <h5 align="left">Slot Price (per hour):</h5>
                                 </div>
                             </div>
                             <div class="col-md-6" style="position: relative;">
@@ -259,24 +258,34 @@
                         </div>
                     </div>
                     <div class="form-group row">
+                        <label for="Vehicle" class="col-sm-2 col-form-label" style="font-weight: bold;font-size: 16px;">Interval</label>
+                        <div class="col-sm-10">
+                            <select class="btn btn-light dropdown-toggle" id="intervallist">
+                                <option value="0">Select the time interval in hours</option>
+                            </select>
+                            <p class="text-danger" id="alertregpass"></p>
+                        </div>
+                    </div>
+                    <div class="form-group row">
                         <label for="Vehicle" class="col-sm-2 col-form-label" style="font-weight: bold;font-size: 16px;">Vehicle</label>
                         <div class="col-sm-10">
                             <select class="btn btn-light dropdown-toggle" id="myList">
-                            <option value = "0">Select one of your vehcle</option>
-                            
-                    </select>
+                                <option value="0">Select one of your vehcle</option>
+                            </select>
                             <p class="text-danger" id="alertregpass"></p>
                         </div>
                     </div>
 
                     <div class="form-group row">
                         <div class="col-sm-10 offset-sm-2">
-                            <button type="button" class="button" onclick="verify()" style="background-image:  linear-gradient(-45deg, rgba(182, 42, 182, 0.781), rgba(160, 9, 247, 0.904));   "><span>Verify </span></button>
+                            <button type="button" class="button" onclick="verify()" style="background-image:  linear-gradient(-45deg, rgba(182, 42, 182, 0.781), rgba(160, 9, 247, 0.904));   "><span>Verify
+                                </span></button>
                         </div>
                     </div>
                     <div class="form-group row">
                         <div class="col-sm-10 offset-sm-2">
-                            <button type="button" class="button" id="bookbutton" onclick="book()" style="background-image:  linear-gradient(-45deg, rgba(182, 42, 182, 0.781), rgba(160, 9, 247, 0.904));   "><span>Book My Park </span></button>
+                            <button type="button" class="button" id="bookbutton" onclick="book()" style="background-image:  linear-gradient(-45deg, rgba(182, 42, 182, 0.781), rgba(160, 9, 247, 0.904));   "><span>Book
+                                    My Park </span></button>
                         </div>
                     </div>
 
@@ -308,8 +317,8 @@
     <nav class="navbar navbar-expand-md navbar-dark fixed-bottom" style="background-image: linear-gradient(-45deg, rgba(182, 42, 182, 0.781), rgba(160, 9, 247, 0.904));">
         <a class="navbar-brand"><img src="images/logo.png" height="40" alt="Book Your Park"></a>
         <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse1">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
         <div class="collapse navbar-collapse" id="navbarCollapse1">
             <div class="navbar-nav ml-auto">
