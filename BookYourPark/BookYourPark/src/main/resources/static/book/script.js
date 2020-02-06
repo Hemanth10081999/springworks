@@ -52,44 +52,32 @@ function initial() {
         });
 
     var d = new Date();
-    var n = d.toISOString().replace('Z', '');
     d.setHours(d.getHours() + 5);
     d.setMinutes(d.getMinutes() + 30);
+    var n = d.toISOString().replace('Z', '');
     document.getElementById('fromTime').defaultValue = n;
+    document.getElementById("fromTime").readOnly = true;
 
     var d1 = new Date();
-    d1.setHours(d1.getHours() + 1);
-    d1.setHours(d1.getHours() + 5);
+    d1.setHours(d1.getHours() + 6);
     d1.setMinutes(d1.getMinutes() + 30);
     var n1 = d1.toISOString().replace('Z', '');
     document.getElementById('toTime').defaultValue = n1;
+    document.getElementById("toTime").readOnly = true;
     var getid = getCookie('id');
-
-
-    console.log(getid);
-
-
 
 
     fetch('http://localhost:8080/api/vehicles/login/' + getid)
         .then(response => response.json())
         .then(posts => {
             posts.forEach(p => {
-
                 console.log(p.number, p.name)
-
                 document.cookie = "vehicle=" + p.id + ";path=/";
-
                 if (p.type == getCookie('stype')) {
-
                     var ne = p.name + ' ' + p.number;
-
                     document.getElementById('myList').innerHTML += `
-
-            <option value = "${p.number}">${ne}</option>
-            
-            `;
-
+                        <option value = "${p.number}">${ne}</option>
+                        `;
                 }
                 console.log(p.title)
             })
@@ -97,7 +85,6 @@ function initial() {
         .catch((err) => {
             console.log(err);
         });
-
 }
 
 
@@ -127,19 +114,23 @@ function verify() {
     } else {
         document.getElementById('alertregpass').innerHTML = ``;
         document.getElementById('payment').hidden = false;
-
-
+        var sort1 = document.getElementById('intervallist');
+        var interval = sort1.options[sort1.selectedIndex].value;
+        console.log(interval, parseInt(interval));
+        var d1 = new Date();
+        d1.setHours(d1.getHours() + parseInt(interval) + 5);
+        d1.setMinutes(d1.getMinutes() + 30);
+        var n1 = d1.toISOString().replace('Z', '');
+        document.getElementById('toTime').defaultValue = n1;
+        document.getElementById("toTime").readOnly = true;
         var dt1 = new Date(document.getElementById('fromTime').value);
         var dt2 = new Date(document.getElementById('toTime').value);
-
         var diff = (dt2.getTime() - dt1.getTime()) / 1000;
         diff /= (60 * 60);
         var val = Math.abs(Math.round(diff));
         var value = getCookie('svalue');
         var amount = val * value;
         document.getElementById('pay').innerHTML = `${amount}`;
-        //alert(val*value);
-
         document.getElementById('bookbutton').disabled = false;
     }
 }

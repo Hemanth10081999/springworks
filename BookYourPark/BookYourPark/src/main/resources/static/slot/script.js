@@ -157,6 +157,7 @@ function getCookie(cname) {
 function sort() {
     var sort = document.getElementById('myList');
     var strSel = sort.options[sort.selectedIndex].value;
+    console.log(strSel);
 
     let element = document.getElementById("posts");
     while (element.firstChild) {
@@ -167,20 +168,15 @@ function sort() {
         .then((res) => res.json())
         .then(posts => {
             var x = 1;
-
             posts.slotdetails.forEach(p => {
-
-                //alert(p.availability);
+                console.log(p.type);
                 if (p.availability == true) {
-
                     if (strSel == 0) {
                         loadslot();
                     } else if (p.type == strSel) {
 
                         console.log(strSel);
-
                         document.getElementById('posts').innerHTML += `
-
             <tr onclick="locClick(${p.id})">
             <td>${x++}</td>
             <td>${p.name}</td>
