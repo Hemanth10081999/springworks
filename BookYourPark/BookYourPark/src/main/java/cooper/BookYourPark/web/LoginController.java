@@ -99,7 +99,7 @@ public class LoginController {
     @RequestMapping(value = "/logins/profile/image",method =RequestMethod.POST,consumes = "multipart/form-data")
     public ModelAndView uploadprofile(@RequestParam("file")MultipartFile file, RedirectAttributes redirectAttributes) throws IOException {
 
-        File convertfile= new File("C:\\Users\\Hemanth\\Music\\springworks\\BookYourPark\\BookYourPark\\src\\main\\resources\\static\\profile\\"+file.getOriginalFilename());
+        File convertfile= new File("../../../resources/static/profile"+file.getOriginalFilename());
         convertfile.createNewFile();
         FileOutputStream out=new FileOutputStream(convertfile);
         out.write(file.getBytes());

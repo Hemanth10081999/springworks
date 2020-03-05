@@ -26,8 +26,6 @@ public class LoginService {
     }
 
     public Login createLogin(Login login){
-     //   Profile newProfile = new Profile();
-     //   login.setProfile(new Profile);
         return loginRepository.save(login);
     }
 
