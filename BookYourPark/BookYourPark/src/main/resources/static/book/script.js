@@ -8,6 +8,7 @@ function logout() {
     window.location = "../home/index.html";
 }
 
+var baseUrl = 'http://ec2-18-221-71-220.us-east-2.compute.amazonaws.com';
 
 
 
@@ -18,7 +19,7 @@ function initial() {
 
     slot = getCookie('slot');
     loc = getCookie('location');
-    fetch('http://localhost:8080/api/locations/' + loc)
+    fetch(baseUrl + ':8080/api/locations/' + loc)
         .then((res) => res.json())
         .then(posts => {
 
@@ -32,7 +33,7 @@ function initial() {
         });
 
 
-    fetch('http://localhost:8080/api/slotdetails/' + slot)
+    fetch(baseUrl + ':8080/api/slotdetails/' + slot)
         .then((res) => res.json())
         .then(posts => {
 
@@ -67,7 +68,7 @@ function initial() {
     var getid = getCookie('id');
 
 
-    fetch('http://localhost:8080/api/vehicles/login/' + getid)
+    fetch(baseUrl + ':8080/api/vehicles/login/' + getid)
         .then(response => response.json())
         .then(posts => {
             posts.forEach(p => {
@@ -143,7 +144,7 @@ function book() {
     var vehicle = getCookie('vehicle');
     var slot = getCookie('slot');
 
-    const url = 'http://localhost:8080/api/parkings';
+    const url = baseUrl + ':8080/api/parkings';
     const data = {
         'inTime': dt1,
         'outTime': dt2,
@@ -178,7 +179,7 @@ function book() {
             document.cookie = "parked=true;path=/";
 
             const Data = {
-                url: 'http://localhost:8080/api/slotdetails/' + sid,
+                url: baseUrl + ':8080/api/slotdetails/' + sid,
                 data: {
                     "name": sname,
                     "floor": sfloor,

@@ -8,6 +8,7 @@ function logout() {
     window.location = "../home/index.html";
 }
 
+var baseUrl = 'http://ec2-18-221-71-220.us-east-2.compute.amazonaws.com';
 
 var booklocation;
 var namelist;
@@ -17,7 +18,7 @@ function loadslot() {
     loc = getCookie('location');
     document.cookie = "slot=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
 
-    fetch('http://localhost:8080/api/locations/' + loc)
+    fetch(baseUrl + ':8080/api/locations/' + loc)
         .then((res) => res.json())
         .then(posts => {
 
@@ -42,7 +43,7 @@ function loadslot() {
     }
 
 
-    fetch('http://localhost:8080/api/locations/' + loc)
+    fetch(baseUrl + ':8080/api/locations/' + loc)
         .then((res) => res.json())
         .then(posts => {
             let output = '';
@@ -164,7 +165,7 @@ function sort() {
         element.removeChild(element.firstChild);
     }
 
-    fetch('http://localhost:8080/api/locations/' + loc)
+    fetch(baseUrl + ':8080/api/locations/' + loc)
         .then((res) => res.json())
         .then(posts => {
             var x = 1;

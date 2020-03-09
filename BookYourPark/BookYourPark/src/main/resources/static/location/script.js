@@ -8,6 +8,8 @@ function logout() {
     window.location = "../home/index.html";
 }
 
+var baseUrl = 'http://ec2-18-221-71-220.us-east-2.compute.amazonaws.com';
+
 
 var locations = [];
 var markers = [];
@@ -19,7 +21,7 @@ function loadlocation() {
 
     document.cookie = "location=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
 
-    fetch('http://localhost:8080/api/locations')
+    fetch(baseUrl + ':8080/api/locations')
         .then((res) => res.json())
         .then(posts => {
 
@@ -51,23 +53,15 @@ function loadlocation() {
         .catch((err) => {
             console.log(err);
         });
-
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(showPosition); //position.coords.latitude, position.coords.longitude  variables for getting cooordinates
-
-    } else {
-        alert("geo location is not suported by your browser");
-    }
+    showPosition();
 }
 
 
 
 
 function showPosition(position) {
-    console.log(position.coords.latitude);
-    console.log(position.coords.longitude);
     setTimeout(function() {
-        initMaps(position.coords.latitude, position.coords.longitude);
+        initMaps(80, 13);
     }, 3000);
 }
 
@@ -105,9 +99,6 @@ function initMaps(latitude, longitude) {
         google.maps.event.addListener(marker, 'click', (function(marker, i) {
             return function() {
                 console.log(namelist[i]);
-
-
-
                 var infowindow = new google.maps.InfoWindow({
                     content: '<h6>' + namelist[i] + '</h6>' +
                         '<p> Slots available : ' + availablelist[i] + '</p>' +
@@ -157,7 +148,7 @@ function sorttable() {
             element.removeChild(element.firstChild);
         }
         const Data = {
-            url: 'http://localhost:8080/api/locations/sort',
+            url: baseUrl + ':8080/api/locations/sort',
             data: {
                 'locSector': strSel
             }

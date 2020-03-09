@@ -139,16 +139,6 @@
                     <div class="card-body">
                         <h4 class="card-title" align="center" id="nameboard"></h4>
                         <!--user name to be here-->
-                        <div align="center">
-                            <form target="_parent" action="/api/logins/profile/image" method="POST" enctype="multipart/form-data">
-                                <input type="file" accept="image/*" max-file-size=123456789 name="file" onchange="savefunction()" id="imagefile" style="background-image:  linear-gradient(-45deg, rgba(182, 42, 182, 0.781), rgba(160, 9, 247, 0.904));   ">
-                                <div style="padding:10px">
-                                    <input type="submit" value="Upload" style="background-image:  linear-gradient(-45deg, rgba(182, 42, 182, 0.781), rgba(160, 9, 247, 0.904));   ">
-                                    <h6>***Choose file size less than 1Mb***</h6>
-                                    <h6>New Profile pic will be Uploaded within 24 hours!!</h6>
-                                </div>
-                            </form>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -205,12 +195,14 @@
                         </div>
                         <div class="form-group row">
                             <div class="col-sm-9 offset-sm-3">
-                                <button id="update" class="button" onclick="modify()" style="background-image:  linear-gradient(-45deg, rgba(182, 42, 182, 0.781), rgba(160, 9, 247, 0.904));   "><span>Update </span></button>
+                                <button id="update" class="button" onclick="modify()" style="background-image:  linear-gradient(-45deg, rgba(182, 42, 182, 0.781), rgba(160, 9, 247, 0.904));   "><span>Update
+                                    </span></button>
                             </div>
                         </div>
                         <div class="form-group row">
                             <div class="col-sm-9 offset-sm-3">
-                                <button type="button" id="save" class="button" onclick="savefunction()" style="background-image:  linear-gradient(-45deg, rgba(182, 42, 182, 0.781), rgba(160, 9, 247, 0.904));   "><span>Save </span></button>
+                                <button type="button" id="save" class="button" onclick="savefunction()" style="background-image:  linear-gradient(-45deg, rgba(182, 42, 182, 0.781), rgba(160, 9, 247, 0.904));   "><span>Save
+                                    </span></button>
                             </div>
                         </div>
                     </form>
@@ -227,8 +219,8 @@
     <nav class="navbar navbar-expand-md navbar-dark fixed-bottom" style="background-image: linear-gradient(-45deg, rgba(182, 42, 182, 0.781), rgba(160, 9, 247, 0.904));">
         <a class="navbar-brand"><img src="images/logo.png" height="40" alt="Book Your Park"></a>
         <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse1">
-        <span class="navbar-toggler-icon"></span>
-    </button>
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
         <div class="collapse navbar-collapse" id="navbarCollapse1">
             <div class="navbar-nav ml-auto">

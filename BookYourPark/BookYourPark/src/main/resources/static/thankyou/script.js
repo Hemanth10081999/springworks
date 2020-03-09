@@ -1,4 +1,4 @@
-function erace(){
+function erace() {
     document.cookie = "parked=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
     document.cookie = "sfloor=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
     document.cookie = "sid=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
@@ -11,10 +11,9 @@ function erace(){
 
 
 
-    setTimeout(function(){ window.location="../home/index.html"; }, 5000);
+    setTimeout(function() { window.location = "../home/index.html"; }, 5000);
 
-    
+
 }
 
-
-
+var baseUrl = 'http://ec2-18-221-71-220.us-east-2.compute.amazonaws.com';

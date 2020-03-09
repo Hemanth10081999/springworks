@@ -9,6 +9,7 @@ function logout() {
 }
 
 
+var baseUrl = 'http://ec2-18-221-71-220.us-east-2.compute.amazonaws.com';
 
 
 function initial() {
@@ -21,7 +22,7 @@ function initial() {
     var getid = getCookie('id');
 
 
-    fetch('http://localhost:8080/api/vehicles/login/' + getid)
+    fetch(baseUrl + ':8080/api/vehicles/login/' + getid)
 
     .then((response) => response.json())
         .then(posts => {
@@ -61,7 +62,7 @@ function del(id) {
 
     if (confirm("Data will be deleted Permenantly") == true) {
         const Data = {
-            url: 'http://localhost:8080/api/vehicles/' + id,
+            url: baseUrl + ':8080/api/vehicles/' + id,
             data: {
 
             }
@@ -115,7 +116,7 @@ function add() {
 
 
     const Data = {
-        url: 'http://localhost:8080/api/vehicles',
+        url: baseUrl + ':8080/api/vehicles',
         data: {
             "colour": color,
             "name": name,

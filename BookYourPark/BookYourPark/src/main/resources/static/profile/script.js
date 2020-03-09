@@ -8,6 +8,7 @@ function logout() {
     window.location = "../home/index.html";
 }
 
+var baseUrl = 'http://ec2-18-221-71-220.us-east-2.compute.amazonaws.com';
 
 
 
@@ -18,7 +19,7 @@ function initia() {
 
     var getemail = getCookie('mailid');
 
-    const url = 'http://localhost:8080/api/logins/profile';
+    const url = baseUrl + ':8080/api/logins/profile';
     const data = {
         'mailid': getemail
     };
@@ -103,16 +104,13 @@ function getCookie(cname) {
 
 
 function savefunction() {
-
-
     //alert("entered into save function");
-
     var getid = getCookie('id');
     var getusername = getCookie('userName');
     document.getElementById('nameboard').innerHTML = `${getusername}`;
     var getemail = getCookie('mailid');
 
-    const url = 'http://localhost:8080/api/logins/profile';
+    const url = baseUrl + ':8080/api/logins/profile';
     const data = {
         'mailid': getemail
     };
@@ -144,17 +142,9 @@ function savefunction() {
                 const pin = document.getElementById('inputpin').value;
 
 
-                var fullPath = document.getElementById('imagefile').value;
-                var filename = fullPath.replace(/^.*[\\\/]/, '');
 
 
-                if (filename != "") {
-
-                    picurl = filename;
-                    alert(picurl);
-                }
-
-                const url = 'http://localhost:8080/api/logins';
+                const url = baseUrl + ':8080/api/logins';
                 const data = {
                     'id': getid,
                     'userName': getusername,
@@ -169,7 +159,7 @@ function savefunction() {
                     'address': address,
                     'city': city,
                     'pin': pin,
-                    'picurl': picurl,
+                    'picurl': "none",
                     'role': role
                 };
                 document.cookie = "update=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;"
