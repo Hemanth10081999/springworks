@@ -37,12 +37,10 @@ function initial() {
             <td>${x++}</td>
             <td>${p.number}</td>
             <td>${p.name}</td>
-            <td>${p.type}</td>
+            <td>${changetype(p.type)}</td>
             <td><i class="fa fa-edit" onclick="edit(${p.id})"></i> </td>
             <td><i class="fas fa-file-excel" onclick="del(${p.id})"></i> </td>
-            </tr>
-            
-            
+            </tr>            
             `;
                 console.log(posts.title)
             })
@@ -51,6 +49,19 @@ function initial() {
             console.log(err);
         });
 }
+
+function changetype(type) {
+    if (type == "1") {
+        return "Bike";
+    } else if (type == "2") {
+        return "Mini Car";
+    } else if (type == "3") {
+        return "Family Car";
+    } else if (type == "4") {
+        return "SUV";
+    }
+}
+
 
 function edit(id) {
 
