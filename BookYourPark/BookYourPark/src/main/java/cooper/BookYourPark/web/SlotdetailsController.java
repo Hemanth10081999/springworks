@@ -77,8 +77,4 @@ public class SlotdetailsController {
                     return ResponseEntity.ok().body(updated);
                 }).orElse(ResponseEntity.notFound().build());
     }
-
-
-
-
 }
