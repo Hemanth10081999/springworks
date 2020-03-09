@@ -42,7 +42,7 @@ function initia() {
                 document.getElementById('inputaddress').defaultValue = p.address;
                 document.getElementById('inputcity').defaultValue = p.city;
                 document.getElementById('inputpin').defaultValue = p.pin;
-                document.getElementById('pic').src = p.picurl;
+                document.getElementById('pic').src = "https://www.searchpng.com/wp-content/uploads/2019/02/Men-Profile-Image-715x657.png";
 
 
                 document.getElementById('inputfirstname').disabled = true;
@@ -59,9 +59,6 @@ function initia() {
             });
         })
         .catch(error => console.error(error));
-
-
-
 }
 
 

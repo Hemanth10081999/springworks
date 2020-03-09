@@ -34,14 +34,7 @@ function loadslot() {
             console.log(err);
         });
 
-
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(showPosition); //position.coords.latitude, position.coords.longitude  variables for getting cooordinates
-
-    } else {
-        alert("geo location is not suported by your browser");
-    }
-
+    showPosition();
 
     fetch(baseUrl + ':8080/api/locations/' + loc)
         .then((res) => res.json())
@@ -71,11 +64,9 @@ function loadslot() {
 
 
 
-function showPosition(position) {
-    console.log(position.coords.latitude);
-    console.log(position.coords.longitude);
+function showPosition() {
     setTimeout(function() {
-        initMaps(position.coords.latitude, position.coords.longitude);
+        initMaps(12.848690, 80.194995);
     }, 3000);
 }
 

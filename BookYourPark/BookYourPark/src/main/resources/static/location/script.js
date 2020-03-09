@@ -9,8 +9,6 @@ function logout() {
 }
 
 var baseUrl = 'http://ec2-18-221-71-220.us-east-2.compute.amazonaws.com';
-
-
 var locations = [];
 var markers = [];
 var namelist = [];
@@ -20,7 +18,6 @@ var idlist = [];
 function loadlocation() {
 
     document.cookie = "location=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-
     fetch(baseUrl + ':8080/api/locations')
         .then((res) => res.json())
         .then(posts => {
@@ -41,7 +38,6 @@ function loadlocation() {
                 `;
 
                 locations[x] = new google.maps.LatLng({ lat: parseFloat(p.latitude), lng: parseFloat(p.longitude) });
-
                 namelist.push(p.locName);
                 availablelist.push(p.availableSlots);
                 idlist.push(p.locId);
@@ -56,19 +52,11 @@ function loadlocation() {
     showPosition();
 }
 
-
-
-
 function showPosition(position) {
     setTimeout(function() {
-        initMaps(80, 13);
+        initMaps(12.848690, 80.194995);
     }, 3000);
 }
-
-
-
-
-
 
 function initMaps(latitude, longitude) {
 
