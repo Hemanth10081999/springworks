@@ -78,7 +78,21 @@ public class SlotdetailsController {
                 }).orElse(ResponseEntity.notFound().build());
     }
 
+    @PutMapping("/slotdetails/device/{slotdetailsId}")
+    @ResponseBody
+    public ResponseEntity<Slotdetails> deviceurl(@PathVariable("slotdetailsId") Integer slotdetailsId ,@RequestParam String name, @RequestParam Integer floor, @RequestParam Boolean availability, @RequestParam String type, @RequestParam Integer time, @RequestParam Integer value) {
+//        return "Slot ID: "+ slotdetailsId +" Name: " + name + " floor: " + floor + " availabilty: " + availability + " type: " + type + " time: " + time + " value: " + value ;
+        return slotdetailsRepository.findById(slotdetailsId)
+                .map(record -> {
+                    record.setName(name);
+                    record.setFloor(floor);
+                    record.setAvailability(availability);
+                    record.setType(type);
+                    record.setTime(time);
+                    record.setValue(value);
 
-
-
+                    Slotdetails updated = slotdetailsRepository.save(record);
+                    return ResponseEntity.ok().body(updated);
+                }).orElse(ResponseEntity.notFound().build());
+    }
 }
