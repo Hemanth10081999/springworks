@@ -170,13 +170,7 @@ function sorttable() {
             .catch((err) => {
                 console.log(err);
             });
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(showPosition); //position.coords.latitude, position.coords.longitude  variables for getting cooordinates
-
-        } else {
-            alert("geo location is not suported by your browser");
-        }
-
+        showPosition();
 
     } else {
         clearMarkers();

@@ -121,9 +121,11 @@ function add() {
     const number = document.getElementById('vehiclenumber').value;
     const color = document.getElementById('inputcolor').value;
     var sort = document.getElementById('myList');
-    var strSel = sort.options[sort.selectedIndex].value;
+    var strSel = sort.selectedIndex;
 
-
+    if (strSel == 0) {
+        strSel = 1;
+    }
 
 
     const Data = {
@@ -132,7 +134,7 @@ function add() {
             "colour": color,
             "name": name,
             "number": number,
-            "type": strSel,
+            "type": strSel.toString(),
             "login": getid
         }
     };
