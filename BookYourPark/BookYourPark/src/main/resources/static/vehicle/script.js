@@ -50,6 +50,10 @@ function initial() {
         });
 }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> master
 function changetype(type) {
     if (type == "1") {
         return "Bike";
